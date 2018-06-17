@@ -6,8 +6,12 @@ import javax.swing.JOptionPane;
 public class Juego extends javax.swing.JFrame {
 public static int op;
 public Tablero tab;
+public Personaje per = new Personaje();
+public int contador=0;
 public boolean tablerocreado=false;
-public Inicio in;
+public Inicio in = new Inicio();
+boolean turnogeneral=true;
+ int turnog,turnoe,x,y;
 
     public Juego() {
         initComponents();
@@ -17,13 +21,15 @@ public Inicio in;
         int tam=tamMatriz();
         this.tab= new Tablero(tam,panel);
         tablerocreado=true;
-        this.jfondo.setIcon(new ImageIcon("C:\\Users\\abypa\\Desktop\\gitHub\\Proyecto 1\\IPC1_201700837\\Proyecto 1\\Medievil\\src\\imagenes\\fondo.jpg"));
+       // per.jper1=this.jper1.getText();
+        //per.ElegirPersonaje(this.jper1.getText(), this.jper2.getText(), this.jper3.getText(), this.jper4.getText(), this.jper5.getText(), this.jper6.getText());
+        this.jfondo.setIcon(new ImageIcon("C:\\Users\\abypa\\Desktop\\Git\\IPC1_201700837\\Proyecto 1\\Proyecto1\\src\\imagenes\\fondo.jpg"));
     }
     public int tamMatriz(){
         int tam=Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese tamaño del tablero:", JOptionPane.QUESTION_MESSAGE));
         return tam;
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -93,6 +99,7 @@ public Inicio in;
 
         jper6.setText("1..........................");
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/dado.png"))); // NOI18N
         jButton1.setText("Tirar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,23 +107,24 @@ public Inicio in;
             }
         });
 
+        dado.setFont(new java.awt.Font("Lucida Sans Unicode", 1, 12)); // NOI18N
         dado.setText("dado");
 
-        arriba.setText("Arriba");
+        arriba.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/arriba.png"))); // NOI18N
         arriba.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 arribaActionPerformed(evt);
             }
         });
 
-        abajo.setText("Abajo");
+        abajo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/abajo.png"))); // NOI18N
         abajo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 abajoActionPerformed(evt);
             }
         });
 
-        izquierda.setText("Izquierda");
+        izquierda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/derecha.png"))); // NOI18N
         izquierda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 izquierdaActionPerformed(evt);
@@ -133,10 +141,10 @@ public Inicio in;
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 452, Short.MAX_VALUE)
+            .addGap(0, 465, Short.MAX_VALUE)
         );
 
-        derecha.setText("Derecha");
+        derecha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/derecha (2).png"))); // NOI18N
         derecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 derechaActionPerformed(evt);
@@ -180,18 +188,6 @@ public Inicio in;
                         .addGap(42, 42, 42)
                         .addComponent(jLabel13))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(dado))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(izquierda)
-                        .addGap(11, 11, 11)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(arriba)
-                            .addComponent(abajo))
-                        .addGap(5, 5, 5)
-                        .addComponent(derecha))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(95, 95, 95)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jper1)
@@ -199,7 +195,19 @@ public Inicio in;
                             .addComponent(jper3)
                             .addComponent(jper4)
                             .addComponent(jper5)
-                            .addComponent(jper6)))))
+                            .addComponent(jper6)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addComponent(izquierda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(arriba, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dado)
+                            .addComponent(abajo, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(5, 5, 5)
+                        .addComponent(derecha, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -243,24 +251,22 @@ public Inicio in;
                             .addComponent(jper5)
                             .addGap(12, 12, 12)
                             .addComponent(jper6)
-                            .addGap(20, 20, 20)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jButton1)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(5, 5, 5)
-                                    .addComponent(dado)))
-                            .addGap(5, 5, 5)
+                                .addComponent(dado))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(arriba)
-                                    .addGap(20, 20, 20)
-                                    .addComponent(abajo))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(izquierda, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(derecha, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGroup(layout.createSequentialGroup()
-                                    .addGap(23, 23, 23)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(izquierda)
-                                        .addComponent(derecha)))))))
-                .addGap(38, 38, 38))
+                                    .addGap(6, 6, 6)
+                                    .addComponent(arriba, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(abajo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -319,11 +325,26 @@ public Inicio in;
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int a = (int)(Math.random()*6)+1;
         this.dado.setText(Integer.toString(a));
+   
+        switch (this.jper2.getText()) {
+               case "Princesa":
+                   x=tab.posperx[0];
+                   y=tab.pospery[0];
+                   break;
+               case "Mago":
+                   x=tab.posperx[1];
+                   y=tab.pospery[1];
+                   break;
+               case "Guerrero":
+                   x=tab.posperx[2];
+                   y=tab.pospery[2];
+                   break;
+               default:
+                   break;
+           }
+        contador++;
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

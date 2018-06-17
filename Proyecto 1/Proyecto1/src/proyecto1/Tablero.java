@@ -7,8 +7,11 @@ public class Tablero {
     public int tam=0,a,b,tambloquey=0,tambloquex=0,diez=0, cinco=0;
     public JPanel fondo=null;
     public int[][] vecL;
+    public int[][] posper;
+    public int[] posperx;
+    public int[] pospery;
     public Personaje per;
-    public Juego jue;
+    public Inicio ini = new Inicio();
     public JLabel[][] vecG;
     
     public Tablero(int tam, JPanel panel){
@@ -21,6 +24,9 @@ public class Tablero {
         tambloquex= 420/tam;
         vecL= new int[tam][tam];
         vecG= new JLabel[tam][tam];
+        posper = new int[tam][tam];
+        posperx= new int[tam];
+        pospery= new int[tam];
         //1 persona 0 casillas vacias
        // vecL[0][0]=1;
         per= new Personaje();
@@ -30,18 +36,47 @@ public class Tablero {
             for(int j=1; j < tam; j++){
                 vecL[i][j]=0;
             }
-            
         }
-        
         for(int p =0; p<=6; ++p){
             a = (int)(Math.random() *tam);
             b = (int)(Math.random() *tam);
+                System.out.println(a+ "    "+b);
             if(vecL[a][b]!=0){
                 --p;
             }else{
                 vecL[a][b]=p;
             }
         }
+        for (int i = 1; i < tam; i++) {
+            for(int j=1; j < tam; j++){
+                if(vecL[i][j]==1){//guardar posicion de la princesa 1
+                    posper[0][0]=vecL[i][j];
+                    posperx[0]=i;
+                    pospery[0]=j;
+                    System.out.println("el personaje 1 esta en la posicion "+posperx[0]+"  "+j);
+                }
+                if(vecL[i][j]==2){//guardar posicion del personaje 2
+                    posper[1][1]=vecL[i][j];
+                    posperx[1]=i;
+                    pospery[1]=j;
+                }
+                if(vecL[i][j]==3){//guardar posicion del personaje 3
+                    posper[2][2]=vecL[i][j];
+                    posperx[2]=i;
+                    pospery[2]=j;
+                }
+                if(vecL[i][j]==4){//guardar posicion del personaje 4
+                    posper[3][3]=vecL[i][j];
+                }
+                if(vecL[i][j]==5){//guardar posicion del personaje 5
+                    posper[4][4]=vecL[i][j];
+                }
+                if(vecL[i][j]==6){//guardar posicion del personaje 6
+                    posper[5][5]=vecL[i][j];
+                }
+            }
+        }
+        
         cinco= (int) (tam*tam*0.05);
         diez=(int) (tam*tam*0.1);
         for(int p =0; p<cinco; ++p){
@@ -64,6 +99,7 @@ public class Tablero {
         }
         repintar();
     }
+    
     public void repintar(){
         JLabel casilla= null;
         for (int i = 0; i < tam; i++) {
@@ -71,8 +107,15 @@ public class Tablero {
                 if(vecL[i][j]==0){// 0 es casilla vacia
                     casilla= new JLabel();
                 }if(vecL[i][j]==1){// 1 es el primer presonaje seleccionado
+                   System.out.println("no se que hago "+ini.p1+"   "+ini.p2+"   "+ini.p3);
+                   if(ini.p1==0){
                     casilla= new JLabel(this.per.princesa1(tambloquex,tambloquey));
-                    
+                   }else if(ini.p1==1){
+                    casilla= new JLabel(this.per.mago1(tambloquex,tambloquey));  
+                   }else if(ini.p1==2){
+                    casilla= new JLabel(this.per.guerrero1(tambloquex,tambloquey)); 
+                   }
+                 
                 }
                 if(vecL[i][j]==2){// 2 es el segundo personaje seleccionado
                     casilla= new JLabel(this.per.mago1(tambloquex,tambloquey));
@@ -95,6 +138,7 @@ public class Tablero {
                 if(vecL[i][j]==8){// 8 son las bombas
                     casilla= new JLabel(this.per.bomba(tambloquex,tambloquey));
                 }
+             
             casilla.setOpaque(false);
             casilla.setBorder(BorderFactory.createLineBorder(new Color(0,0,0)));
             casilla.setBounds(j*tambloquex, i*tambloquey, tambloquex, tambloquey);

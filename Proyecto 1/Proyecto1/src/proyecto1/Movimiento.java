@@ -12,17 +12,23 @@ public class Movimiento extends Thread{
         this.cantidad= cantidad;
         this.tab= tab;
         this.op=op;
+        
     }
     public boolean comprobarFin(){
-        if (tab.per.posponerx>=tab.tam-1||tab.per.posponery>=tab.tam-1) {//almacenamiento log
+        for (int i = 1; i <tab.tam; i++) {
+            if (tab.pospery[i]>=tab.tam-1) {//almacenamiento log
             return true;//bufferedWriter y PrintWriter son iguales
         }//ruta absoluta y ruta relativa
+        }
         return false;
+        
     }
      
     public boolean comprobarInicio(){
-        if (tab.per.posponerx<=0||tab.per.posponery<=0) {
+        for (int i = 1; i <tab.tam; i++) {
+             if (tab.per.posponerx<=0||tab.per.posponery<=0) {
             return true;
+        }
         }
         return false;
     }
@@ -38,17 +44,19 @@ public class Movimiento extends Thread{
                     cantidad=0;
                     tab.vecL[tab.tam-1][tab.tam-1]=0;
                     tab.vecG[tab.tam-1][tab.tam-1].setIcon(null);
-                    tab.per.posponerx=0;
-                    tab.vecL[0][0]=1;
+                    tab.posperx[0]=0;
+                    tab.pospery[0]=0;
+                //    tab.vecL[0][0]=1;
                     tab.repintar();
                     return;
                 }else{
+                    System.out.println(tab.posperx[0] +""+tab.pospery[0]);
                     //mover una posicion
-                    tab.vecL[tab.per.posponery][tab.per.posponerx]=0;
-                    tab.vecG[tab.per.posponery][tab.per.posponerx].setIcon(null);
+                    tab.vecL[tab.posperx[0]][tab.pospery[0]]=0;
+                    tab.vecG[tab.posperx[0]][tab.pospery[0]].setIcon(null);
                     tab.repintar();
-                    tab.per.posponerx+=1;
-                    tab.vecL[tab.per.posponery][tab.per.posponerx]=1;
+                    tab.pospery[0]+=1;
+                    tab.vecL[tab.posperx[0]][tab.pospery[0]]=1;
                     tab.repintar();
                     cantidad--;
                     Thread.sleep(500);
@@ -66,11 +74,13 @@ public class Movimiento extends Thread{
                     return;
                 }else{
                     //mover una posicion
-                    tab.vecL[tab.per.posponery][tab.per.posponerx]=0;
-                    tab.vecG[tab.per.posponery][tab.per.posponerx].setIcon(null);
+                    System.out.println(tab.posperx[0] +"   "+tab.pospery[0]);
+                    tab.vecL[tab.posperx[1]][tab.pospery[1]]=0;
+                    tab.vecG[tab.posperx[1]][tab.pospery[1]].setIcon(null);
+                 
                     tab.repintar();
-                    tab.per.posponerx-=1;
-                    tab.vecL[tab.per.posponerx][tab.per.posponery]=1;
+                    tab.posperx[1]-=1;
+                    tab.vecL[tab.posperx[1]][tab.pospery[1]]=1;
                     tab.repintar();
                     cantidad--;
                     Thread.sleep(500);

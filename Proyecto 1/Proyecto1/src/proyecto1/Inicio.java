@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 public class Inicio extends javax.swing.JFrame {
 
 public Juego ini;
+public static int p1=0, p2=0, p3=0;
     public Inicio() {
         this.setBounds(350, 200, 500, 400);
         
@@ -196,6 +197,9 @@ public Juego ini;
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
+        p1=this.jper1.getSelectedIndex();
+        p2=this.jper2.getSelectedIndex();
+        p3=this.jper3.getSelectedIndex();
        System.out.println(this.jper1.getSelectedIndex()+"   "+this.jper2.getSelectedIndex()+"   "+this.jper3.getSelectedIndex());
        if(jnombre1.getText().equals("")||jnombre2.getText().equals("")){
            JOptionPane.showMessageDialog(null, "Faltan datos");
