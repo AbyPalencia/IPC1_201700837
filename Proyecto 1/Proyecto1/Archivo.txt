@@ -1,3 +1,2 @@
-jugador1, jugador2,1:00:00, 1, 5,per1, per2, per3, pre4, per5, per6, ganador
-jugador1, jugador2,1:00:00, 1, 5,per1, per2, per3, pre4, per5, per6, ganador
-jugador1, jugador2,1:00:00, 1, 5,per1, per2, per3, pre4, per5, per6, ganador
+Aby,Fulano,00:03:56,5,5,Princesa,Mago,Guerrero,Guerrero,Mago,Princesa,Empate
+Carlo,dadfadf,00:02:23,5,5,Princesa,Mago,Mago,Mago,Mago,Princesa,Empate

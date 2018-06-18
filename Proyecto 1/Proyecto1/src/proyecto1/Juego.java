@@ -6,15 +6,12 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 public class Juego extends javax.swing.JFrame {
-public static int op;
+public static int op,contador=0,turnog,turnoe,x,y;
 public Tablero tab;
 public Personaje per = new Personaje();
-public static int contador=0;
-public boolean tablerocreado=false;
+public boolean tablerocreado=false,turnogeneral=true;
 public Inicio in = new Inicio();
-boolean turnogeneral=true;
-int turnog,turnoe,x,y;
-public static String datos;
+public static String datos,ganador;
 public Final fn = new Final();
 
 
@@ -306,10 +303,11 @@ public Final fn = new Final();
                             .addGap(12, 12, 12)
                             .addComponent(jper6)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton1)
-                                .addComponent(dado)
-                                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jButton1)
+                                    .addComponent(dado)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(18, 18, 18)
@@ -345,6 +343,16 @@ public Final fn = new Final();
         fn.setLocationRelativeTo(null);
         fn.setResizable(false);
         Desabilitar();
+        if(Integer.parseInt(v1.getText())==Integer.parseInt(v2.getText())){
+            ganador="Empate";
+        }else if(Integer.parseInt(v1.getText())>Integer.parseInt(v2.getText())){
+            ganador=in.nombre1;
+        }else if(Integer.parseInt(v1.getText())<Integer.parseInt(v2.getText())){
+            ganador=in.nombre2;
+        }
+        datos=in.nombre1+","+in.nombre2+","+tiempo.getText()+","+Integer.parseInt(v1.getText())+","+Integer.parseInt(v2.getText())+","+in.ju1+","+in.ju2+","+in.ju3+","+in.ju4+","+in.ju5+","+in.ju6+","+ganador;
+        fn.datos.setText(datos);
+        System.out.println(datos);
         }
         actualizarLabel();
     }    
@@ -420,6 +428,16 @@ public Final fn = new Final();
         fn.setLocationRelativeTo(null);
         fn.setResizable(false);
         Desabilitar();
+        if(Integer.parseInt(v1.getText())==Integer.parseInt(v2.getText())){
+            ganador="Empate";
+        }else if(Integer.parseInt(v1.getText())>Integer.parseInt(v2.getText())){
+            ganador=in.nombre1;
+        }else if(Integer.parseInt(v1.getText())<Integer.parseInt(v2.getText())){
+            ganador=in.nombre2;
+        }
+        datos=in.nombre1+","+in.nombre2+","+tiempo.getText()+","+Integer.parseInt(v1.getText())+","+Integer.parseInt(v2.getText())+","+in.ju1+","+in.ju2+","+in.ju3+","+in.ju4+","+in.ju5+","+in.ju6+","+ganador;
+        fn.datos.setText(datos);
+        System.out.println(datos);
     }//GEN-LAST:event_SalirActionPerformed
 
     public static void main(String args[]) {

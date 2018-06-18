@@ -5,7 +5,7 @@ public class Inicio extends javax.swing.JFrame {
 
 public Juego ini;
 public static int p1=0, p2=0, p3=0, p4=0, p5=0, p6=0, time;
-public static String datos;
+public static String datos, nombre1, nombre2, ju1, ju2, ju3, ju4, ju5, ju6;
     public Inicio() {
         this.setBounds(350, 200, 500, 400);
         
@@ -217,7 +217,13 @@ public static String datos;
        if(jnombre1.getText().equals("")||jnombre2.getText().equals("")||jtiempo.getText().equals("")){
            JOptionPane.showMessageDialog(null, "Faltan datos");
        }else{
-           time=Integer.parseInt(jtiempo.getText());
+        p1=this.jper1.getSelectedIndex();
+        p2=this.jper2.getSelectedIndex();
+        p3=this.jper3.getSelectedIndex();
+        p4=this.jper4.getSelectedIndex();
+        p5=this.jper5.getSelectedIndex();
+        p6=this.jper6.getSelectedIndex();
+        time=Integer.parseInt(jtiempo.getText());
        ini = new Juego();
        ini.setVisible(true);
        ini.setLocationRelativeTo(null);
@@ -240,15 +246,17 @@ public static String datos;
         ini.jper5.setText(this.jper5.getSelectedItem().toString());
         ini.jper6.setText(this.jper6.getSelectedItem().toString());
         
-       
-        p1=this.jper1.getSelectedIndex();
-        p2=this.jper2.getSelectedIndex();
-        p3=this.jper3.getSelectedIndex();
-        p4=this.jper4.getSelectedIndex();
-        p5=this.jper5.getSelectedIndex();
-        p6=this.jper6.getSelectedIndex();
-//datos="Datos del jugador1: "+this.jnombre1.getText()+"v: "+ini.v1.getText()+" "+this.jper1.getSelectedItem().toString()+" "+this.jper2.getSelectedItem().toString()+" "+this.jper3.getSelectedItem().toString()+"Datos del jugador2: "+this.jnombre2.getText()+"v: "+v2.getText()+" "+jper4.getText()+" "+jper5.getText()+" "+jper6.getText()+"Tiempo: "+tiempo.getText();
-
+        nombre1 =this.jnombre1.getText();
+        nombre2 =this.jnombre2.getText();
+        ju1=this.jper1.getSelectedItem().toString();
+        ju2=this.jper2.getSelectedItem().toString();
+        ju3=this.jper3.getSelectedItem().toString();
+        ju4=this.jper4.getSelectedItem().toString();
+        ju5=this.jper5.getSelectedItem().toString();
+        ju6=this.jper6.getSelectedItem().toString();
+ 
+//atos=this.jnombre1.getText()+","+this.jnombre2.getText()+","+ini.tiempo.getText()+","+Integer.parseInt(ini.v1.getText())+","+Integer.parseInt(ini.v2.getText())+","+this.jper1.getSelectedItem().toString()+","+this.jper2.getSelectedItem().toString()+","+this.jper3.getSelectedItem().toString()+","+jper4.getSelectedItem().toString()+","+jper5.getSelectedItem().toString()+","+jper6.getSelectedItem().toString()+","+"ganador";
+  //      System.out.println(datos);
 
 }
     private void jnombre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jnombre1ActionPerformed

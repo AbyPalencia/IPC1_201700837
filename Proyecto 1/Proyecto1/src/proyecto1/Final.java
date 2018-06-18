@@ -75,7 +75,7 @@ public boolean vectorcreado=false;
         DefaultListModel modelo = new DefaultListModel();
         int tam = vecJugador.length;
         for(int i=0; i<tam; i++){
-            modelo.add(i,vecJugador[i].getNombre1()+"->"+vecJugador[i].getNombre2());
+            modelo.add(i,vecJugador[i].getNombre1()+"->"+vecJugador[i].getNombre2()+"->"+vecJugador[i].getTiempo()+" |vidas->"+vecJugador[i].getVida1()+"->"+vecJugador[i].getVida2()+" |orden del jugador 1->"+vecJugador[i].getPer1()+"->"+vecJugador[i].getPer2()+"->"+vecJugador[i].getPer3()+" |orden del jugador 2->"+vecJugador[i].getPer4()+"->"+vecJugador[i].getPer5()+"->"+vecJugador[i].getPer6()+" |Ganador->"+vecJugador[i].getGanador());
         }
         Lista.setModel(modelo);
         vectorcreado=true;
@@ -107,6 +107,20 @@ public boolean vectorcreado=false;
         br.close();
         return per;     
                 }
+     /*public void ordenarln(Jugador[] vec){
+     int p,j;
+     Jugador aux;
+     int tam= vec.length;
+     for(p=1;p<tam;p++){
+     aux=vec[p];
+     j=p-1;//posicion aterior
+     while((j>=0)&&aux.getTiempo()> vec[j].getTiempo()){//no puedo hacerlo asi porque son string :C
+     vec[j+1]=vec[j];
+     j--;
+     }
+     vec[j+1]=aux;
+     }
+     }*/
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
