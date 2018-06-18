@@ -8,7 +8,7 @@ public class Movimiento extends Thread{
     public int cantidad=0;
     public static int op;
     public Tablero tab=null;
-    public Juego ju = new Juego();
+    public Juego ju;
     public Movimiento(int cantidad, Tablero tab,int op){
         this.cantidad= cantidad;
         this.tab= tab;
@@ -45,19 +45,19 @@ public class Movimiento extends Thread{
                     cantidad=0;
                     tab.vecL[tab.tam-1][tab.tam-1]=0;
                     tab.vecG[tab.tam-1][tab.tam-1].setIcon(null);
-                    tab.posperx[0]=0;
-                    tab.pospery[0]=0;
+                    tab.posperx[ju.contador]=0;
+                    tab.pospery[ju.contador]=0;
                 //    tab.vecL[0][0]=1;
                     tab.repintar();
                     return;
                 }else{
-                    System.out.println(tab.posperx[0] +""+tab.pospery[0]);
+                    //System.out.println(ju.contador);
                     //mover una posicion
                     tab.vecL[tab.posperx[ju.contador]][tab.pospery[ju.contador]]=0;
                     tab.vecG[tab.posperx[ju.contador]][tab.pospery[ju.contador]].setIcon(null);
                     tab.repintar();
-                    tab.pospery[0]+=1;
-                    tab.vecL[tab.posperx[0]][tab.pospery[0]]=1;
+                    tab.pospery[ju.contador]+=1;
+                    tab.vecL[tab.posperx[ju.contador]][tab.pospery[ju.contador]]=ju.contador;
                     tab.repintar();
                     cantidad--;
                     Thread.sleep(500);
@@ -70,18 +70,16 @@ public class Movimiento extends Thread{
                     tab.vecL[0][0]=0;
                     tab.vecG[0][0].setIcon(null);
                     tab.per.posponerx=tab.tam-1;
-                    tab.vecL[tab.tam-1][tab.tam-1]=1;
+                    //tab.vecL[tab.tam-1][tab.tam-1]=1;
                     tab.repintar();
                     return;
                 }else{
                     //mover una posicion
-                    System.out.println(tab.posperx[0] +"   "+tab.pospery[0]);
-                    tab.vecL[tab.posperx[1]][tab.pospery[1]]=0;
-                    tab.vecG[tab.posperx[1]][tab.pospery[1]].setIcon(null);
-                 
+                    tab.vecL[tab.posperx[ju.contador]][tab.pospery[ju.contador]]=0;
+                    tab.vecG[tab.posperx[ju.contador]][tab.pospery[ju.contador]].setIcon(null);
                     tab.repintar();
-                    tab.posperx[1]-=1;
-                    tab.vecL[tab.posperx[1]][tab.pospery[1]]=1;
+                    tab.pospery[ju.contador]-=1;
+                    tab.vecL[tab.posperx[ju.contador]][tab.pospery[ju.contador]]=ju.contador;
                     tab.repintar();
                     cantidad--;
                     Thread.sleep(500);
@@ -94,21 +92,43 @@ public class Movimiento extends Thread{
                     tab.vecL[tab.tam-1][tab.tam-1]=0;
                     tab.vecG[tab.tam-1][tab.tam-1].setIcon(null);
                     tab.per.posponery=0;
-                    tab.vecL[0][0]=1;
+                   // tab.vecL[ju.contador][ju.contador]=1;
                     tab.repintar();
                     return;
                 }else{
                     //mover una posicion
-                    tab.vecL[tab.per.posponery][tab.per.posponerx]=0;
-                    tab.vecG[tab.per.posponery][tab.per.posponerx].setIcon(null);
+                    tab.vecL[tab.posperx[ju.contador]][tab.pospery[ju.contador]]=0;
+                    tab.vecG[tab.posperx[ju.contador]][tab.pospery[ju.contador]].setIcon(null);
                     tab.repintar();
-                    tab.per.posponery+=1;
-                    tab.vecL[tab.per.posponery][tab.per.posponerx]=1;
+                    tab.posperx[ju.contador]+=1;
+                    tab.vecL[tab.posperx[ju.contador]][tab.pospery[ju.contador]]=ju.contador;
                     tab.repintar();
                     cantidad--;
                     Thread.sleep(500);//solo hace que se detenga la vista del movimiento
                     moverAbajo(cantidad);
                 }       break;
+            case 3:
+                //arriba
+                if (comprobarFin()) {
+                    cantidad=0;
+                    tab.vecL[tab.tam-1][tab.tam-1]=0;
+                    tab.vecG[tab.tam-1][tab.tam-1].setIcon(null);
+                    tab.per.posponery=0;
+                   // tab.vecL[0][0]=1;
+                    tab.repintar();
+                    return;
+                }else{
+                    //mover una posicion
+                    tab.vecL[tab.posperx[ju.contador]][tab.pospery[ju.contador]]=0;
+                    tab.vecG[tab.posperx[ju.contador]][tab.pospery[ju.contador]].setIcon(null);
+                    tab.repintar();
+                    tab.posperx[ju.contador]-=1;
+                    tab.vecL[tab.posperx[ju.contador]][tab.pospery[ju.contador]]=ju.contador;
+                    tab.repintar();
+                    cantidad--;
+                    Thread.sleep(500);//solo hace que se detenga la vista del movimiento
+                    moverAbajo(cantidad);
+                }
             default:
                 break;
         }

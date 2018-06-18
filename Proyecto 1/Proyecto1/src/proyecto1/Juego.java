@@ -25,9 +25,7 @@ public Final fn = new Final();
         int tam=tamMatriz();
         this.tab= new Tablero(tam,panel);
         tablerocreado=true;
-        //datos="Datos del jugador1: "+ljugador1.getText()+"v: "+v1.getText()+" "+jper1.getText()+" "+jper2.getText()+" "+jper3.getText()+"Datos del jugador2: "+ljugador2.getText()+"v: "+v2.getText()+" "+jper4.getText()+" "+jper5.getText()+" "+jper6.getText()+"Tiempo: "+tiempo.getText();
-        //fn.datos.setText(datos);
-      //  System.out.println(datos);
+        
         this.jfondo.setIcon(new ImageIcon("C:\\Users\\abypa\\Desktop\\Git\\IPC1_201700837\\Proyecto 1\\Proyecto1\\src\\imagenes\\fondo.jpg"));
     }
     public void Desabilitar(){
@@ -36,6 +34,25 @@ public Final fn = new Final();
     public int tamMatriz(){
         int tam=Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese tamaño del tablero:", JOptionPane.QUESTION_MESSAGE));
         return tam;
+    }
+    public void sinVidad(){
+        if(Integer.parseInt(this.v1.getText())==0||Integer.parseInt(this.v2.getText())==0){
+            t.stop();
+        fn.setVisible(true);
+        fn.setLocationRelativeTo(null);
+        fn.setResizable(false);
+        Desabilitar();
+        if(Integer.parseInt(v1.getText())==Integer.parseInt(v2.getText())){
+            ganador="Empate";
+        }else if(Integer.parseInt(v1.getText())>Integer.parseInt(v2.getText())){
+            ganador=in.nombre1;
+        }else if(Integer.parseInt(v1.getText())<Integer.parseInt(v2.getText())){
+            ganador=in.nombre2;
+        }
+        datos=in.nombre1+","+in.nombre2+","+tiempo.getText()+","+Integer.parseInt(v1.getText())+","+Integer.parseInt(v2.getText())+","+in.ju1+","+in.ju2+","+in.ju3+","+in.ju4+","+in.ju5+","+in.ju6+","+ganador;
+        fn.datos.setText(datos);
+        System.out.println(datos);
+        }
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -60,7 +77,6 @@ public Final fn = new Final();
         jper5 = new javax.swing.JLabel();
         jper6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        dado = new javax.swing.JLabel();
         arriba = new javax.swing.JButton();
         abajo = new javax.swing.JButton();
         izquierda = new javax.swing.JButton();
@@ -69,6 +85,7 @@ public Final fn = new Final();
         jfondo = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         Salir = new javax.swing.JButton();
+        dado = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -133,9 +150,6 @@ public Final fn = new Final();
             }
         });
 
-        dado.setFont(new java.awt.Font("Lucida Sans Unicode", 1, 12)); // NOI18N
-        dado.setText("dado");
-
         arriba.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/arriba.png"))); // NOI18N
         arriba.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,6 +200,8 @@ public Final fn = new Final();
             }
         });
 
+        dado.setText("dado");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -203,16 +219,16 @@ public Final fn = new Final();
                             .addComponent(jButton1)
                             .addComponent(izquierda, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(arriba, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(dado)
-                            .addComponent(abajo, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(arriba, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(abajo, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(5, 5, 5)
                                 .addComponent(derecha, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(dado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(12, 12, 12))))
                     .addGroup(layout.createSequentialGroup()
@@ -229,33 +245,30 @@ public Final fn = new Final();
                                         .addComponent(Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(ljugador1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(v1)
+                                .addGap(42, 42, 42)
+                                .addComponent(jLabel6))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addGap(18, 18, 18)
+                                .addComponent(ljugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addGap(18, 18, 18)
+                                .addComponent(v2)
+                                .addGap(42, 42, 42)
+                                .addComponent(jLabel13))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(95, 95, 95)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(v1)
-                                        .addGap(42, 42, 42)
-                                        .addComponent(jLabel6))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel10)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(ljugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel11)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(v2)
-                                        .addGap(42, 42, 42)
-                                        .addComponent(jLabel13))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(95, 95, 95)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jper1)
-                                            .addComponent(jper2)
-                                            .addComponent(jper3)
-                                            .addComponent(jper4)
-                                            .addComponent(jper5)
-                                            .addComponent(jper6))))
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                                    .addComponent(jper1)
+                                    .addComponent(jper2)
+                                    .addComponent(jper3)
+                                    .addComponent(jper4)
+                                    .addComponent(jper6)
+                                    .addComponent(jper5))))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -307,7 +320,7 @@ public Final fn = new Final();
                                 .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jButton1)
-                                    .addComponent(dado)))
+                                    .addComponent(dado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(18, 18, 18)
@@ -361,54 +374,306 @@ public Final fn = new Final();
         String tiempo = (m<=9?"0":"")+m+":"+(s<=9?"0":"")+s+":"+(cs<=9?"0":"")+cs;
         this.tiempo.setText(tiempo);
     }
-    
-
     private void arribaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arribaActionPerformed
          
+        if (!tablerocreado) {
+            System.out.println("Tablero no creado");
+            return;
+        }else{
+        if(dado.getText().equals("dado")){
+          JOptionPane.showConfirmDialog(null, "Primero debe lanzar el dado");
+        }else{
+        op=3;
+            switch (contador) {
+                case 1:
+                    //Movimiento mov1= new Movimiento(Integer.parseInt(dado.getText()),tab,op);
+                    //mov1.start();
+                    this.panel.removeAll();
+                    this.panel.repaint();
+                    sinVidad();
+                    MovPer1 mov = new MovPer1(Integer.parseInt(dado.getText()),tab,op);
+                    mov.start();
+                    break;
+                case 2:
+                    {
+                        System.out.println("el contador es 2");
+                        this.panel.removeAll();
+                        this.panel.repaint();
+                        sinVidad();
+                        MovPer2 mov2 = new MovPer2(Integer.parseInt(dado.getText()),tab,op);
+                        mov2.start();
+                        break;
+                    }
+                case 3:
+                    {
+                        this.panel.removeAll();
+                        this.panel.repaint();
+                        sinVidad();
+                        System.out.println("el contador es 3");
+                        MovPer3 mov2 = new MovPer3(Integer.parseInt(dado.getText()),tab,op);
+                        mov2.start();
+                        break;
+                    }
+                case 4:
+                    {
+                        this.panel.removeAll();
+                        this.panel.repaint();
+                        sinVidad();
+                        MovPer4 mov2 = new MovPer4(Integer.parseInt(dado.getText()),tab,op);
+                        mov2.start();
+                        break;
+                    }
+                case 5:
+                    {
+                        this.panel.removeAll();
+                        this.panel.repaint();
+                        sinVidad();
+                        MovPer5 mov2 = new MovPer5(Integer.parseInt(dado.getText()),tab,op);
+                        mov2.start();
+                        break;
+                    }
+                case 6:
+                    {
+                        this.panel.removeAll();
+                        this.panel.repaint();
+                        sinVidad();
+                        MovPer6 mov2 = new MovPer6(Integer.parseInt(dado.getText()),tab,op);
+                        mov2.start();
+                        break;
+                    }
+                default:
+                    break;
+            }
+      }}
+     
+      
     }//GEN-LAST:event_arribaActionPerformed
 
     private void abajoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abajoActionPerformed
-      if (!tablerocreado) {
+      
+        if (!tablerocreado) {
             System.out.println("Tablero no creado");
             return;
-        }
-      if(dado.getText().equals("dado")){
+        }else{
+          if(dado.getText().equals("dado")){
           JOptionPane.showConfirmDialog(null, "Primero debe lanzar el dado");
       }else{
         op=2;
-        Movimiento mov1= new Movimiento(Integer.parseInt(dado.getText()),tab,op);
-        mov1.start();   
-      }
+              switch (contador) {
+                  case 1:
+                      //Movimiento mov1= new Movimiento(Integer.parseInt(dado.getText()),tab,op);
+                      //mov1.start();
+                      this.panel.removeAll();
+                      this.panel.repaint();
+                      sinVidad();
+                      MovPer1 mov = new MovPer1(Integer.parseInt(dado.getText()),tab,op);
+                      mov.start();
+                      break;
+                  case 2:
+                      {
+                          System.out.println("el contador es 2");
+                          this.panel.removeAll();
+                          this.panel.repaint();
+                          sinVidad();
+                          MovPer2 mov2 = new MovPer2(Integer.parseInt(dado.getText()),tab,op);
+                          mov2.start();
+                          break;
+                      }
+                  case 3:
+                      {
+                          this.panel.removeAll();
+                          this.panel.repaint();
+                          sinVidad();
+                          System.out.println("el contador es 3");
+                          MovPer3 mov2 = new MovPer3(Integer.parseInt(dado.getText()),tab,op);
+                          mov2.start();
+                          break;
+                      }
+                   case 4:
+                    {
+                        this.panel.removeAll();
+                        this.panel.repaint();
+                        sinVidad();
+                        MovPer4 mov2 = new MovPer4(Integer.parseInt(dado.getText()),tab,op);
+                        mov2.start();
+                        break;
+                    }
+                case 5:
+                    {
+                        this.panel.removeAll();
+                        this.panel.repaint();
+                        sinVidad();
+                        MovPer5 mov2 = new MovPer5(Integer.parseInt(dado.getText()),tab,op);
+                        mov2.start();
+                        break;
+                    }
+                case 6:
+                    {
+                        this.panel.removeAll();
+                        this.panel.repaint();
+                        sinVidad();
+                        MovPer6 mov2 = new MovPer6(Integer.parseInt(dado.getText()),tab,op);
+                        mov2.start();
+                        break;
+                    }
+                  default:
+                      break;
+              }
+      }}
+          
+          
+      
+      
     }//GEN-LAST:event_abajoActionPerformed
 
     private void derechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_derechaActionPerformed
-        if (!tablerocreado) {
+        
+          if (!tablerocreado) {
             System.out.println("Tablero no creado");
             return;
-        }
-        if(dado.getText().equals("dado")){
+        }else{
+       if(dado.getText().equals("dado")){
           JOptionPane.showConfirmDialog(null, "Primero debe lanzar el dado");
       }else{
         op=0;
-        Movimiento mov1= new Movimiento(Integer.parseInt(dado.getText()),tab,op);
-        mov1.start();    
-        } 
+           switch (contador) {
+               case 1:
+                   //Movimiento mov1= new Movimiento(Integer.parseInt(dado.getText()),tab,op);
+                   //mov1.start();
+                   this.panel.removeAll();
+                   this.panel.repaint();
+                   sinVidad();
+                   MovPer1 mov = new MovPer1(Integer.parseInt(dado.getText()),tab,op);
+                   mov.start();
+                   break;
+               case 2:
+                   {
+                       System.out.println("el contador es 2");
+                       this.panel.removeAll();
+                       this.panel.repaint();
+                       sinVidad();
+                       MovPer2 mov2 = new MovPer2(Integer.parseInt(dado.getText()),tab,op);
+                       mov2.start();
+                       break;
+                   }
+               case 3:
+                   {
+                       System.out.println("el contador es 3");
+                       this.panel.removeAll();
+                       this.panel.repaint();
+                       sinVidad();
+                       MovPer3 mov2 = new MovPer3(Integer.parseInt(dado.getText()),tab,op);
+                       mov2.start();
+                       break;
+                   }
+               case 4:
+                    {
+                        this.panel.removeAll();
+                        this.panel.repaint();
+                        sinVidad();
+                        MovPer4 mov2 = new MovPer4(Integer.parseInt(dado.getText()),tab,op);
+                        mov2.start();
+                        break;
+                    }
+                case 5:
+                    {
+                        this.panel.removeAll();
+                        this.panel.repaint();
+                        sinVidad();
+                        MovPer5 mov2 = new MovPer5(Integer.parseInt(dado.getText()),tab,op);
+                        mov2.start();
+                        break;
+                    }
+                case 6:
+                    {
+                        this.panel.removeAll();
+                        this.panel.repaint();
+                        sinVidad();
+                        MovPer6 mov2 = new MovPer6(Integer.parseInt(dado.getText()),tab,op);
+                        mov2.start();
+                        break;
+                    }
+               default:
+                   break;
+           }
+} }
+     
+         
     }//GEN-LAST:event_derechaActionPerformed
 
     private void izquierdaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_izquierdaActionPerformed
-        if (!tablerocreado) {
+       
+         if (!tablerocreado) {
             System.out.println("Tablero no creado");
             return;
-        }
-        if(dado.getText().equals("dado")){
+        }else{
+            if(dado.getText().equals("dado")){
           JOptionPane.showMessageDialog(null, "Primero debe lanzar el dado");
           
       }else{
         op=1;
-        Movimiento mov1= new Movimiento(Integer.parseInt(dado.getText()),tab,op);
-        mov1.start();      
-        }
-        
+                switch (contador) {
+                    case 1:
+                        //Movimiento mov1= new Movimiento(Integer.parseInt(dado.getText()),tab,op);
+                        //mov1.start();
+                        this.panel.removeAll();
+                        this.panel.repaint();
+                        sinVidad();
+                        MovPer1 mov = new MovPer1(Integer.parseInt(dado.getText()),tab,op);
+                        mov.start();
+                        break;
+                    case 2:
+                        {
+                            System.out.println("el contador es 2");
+                            this.panel.removeAll();
+                            this.panel.repaint();
+                            sinVidad();
+                            MovPer2 mov2 = new MovPer2(Integer.parseInt(dado.getText()),tab,op);
+                            mov2.start();
+                            break;
+                        }
+                    case 3:
+                        {
+                            System.out.println("el contador es 3");
+                            this.panel.removeAll();
+                            this.panel.repaint();
+                            sinVidad();
+                            MovPer3 mov2 = new MovPer3(Integer.parseInt(dado.getText()),tab,op);
+                            mov2.start();
+                            break;
+                        }
+                    case 4:
+                    {
+                        this.panel.removeAll();
+                        this.panel.repaint();
+                        sinVidad();
+                        MovPer4 mov2 = new MovPer4(Integer.parseInt(dado.getText()),tab,op);
+                        mov2.start();
+                        break;
+                    }
+                case 5:
+                    {
+                        this.panel.removeAll();
+                        this.panel.repaint();
+                        sinVidad();
+                        MovPer5 mov2 = new MovPer5(Integer.parseInt(dado.getText()),tab,op);
+                        mov2.start();
+                        break;
+                    }
+                case 6:
+                    {
+                        this.panel.removeAll();
+                        this.panel.repaint();
+                        sinVidad();
+                        MovPer6 mov2 = new MovPer6(Integer.parseInt(dado.getText()),tab,op);
+                        mov2.start();
+                        break;
+                    }
+                    default:
+                        break;
+                }
+        }}
+     
     }//GEN-LAST:event_izquierdaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -419,7 +684,7 @@ public Final fn = new Final();
             contador=0;
         }
         contador++;
-        System.out.println(contador);
+       System.out.println(contador);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
@@ -473,7 +738,7 @@ public Final fn = new Final();
     private javax.swing.JButton Salir;
     private javax.swing.JButton abajo;
     private javax.swing.JButton arriba;
-    private javax.swing.JLabel dado;
+    private javax.swing.JTextField dado;
     private javax.swing.JButton derecha;
     private javax.swing.JButton izquierda;
     private javax.swing.JButton jButton1;

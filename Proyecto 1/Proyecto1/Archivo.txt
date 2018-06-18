@@ -1,2 +1,8 @@
 Aby,Fulano,00:03:56,5,5,Princesa,Mago,Guerrero,Guerrero,Mago,Princesa,Empate
 Carlo,dadfadf,00:02:23,5,5,Princesa,Mago,Mago,Mago,Mago,Princesa,Empate
+fadf,adf,00:50:74,5,5,Princesa,Princesa,Princesa,Princesa,Princesa,Princesa,Empate
+fadf,adf,00:50:74,5,5,Princesa,Princesa,Princesa,Princesa,Princesa,Princesa,Empate
+fadf,adf,00:50:74,5,5,Princesa,Princesa,Princesa,Princesa,Princesa,Princesa,Empate
+fadf,adf,00:50:74,5,5,Princesa,Princesa,Princesa,Princesa,Princesa,Princesa,Empate
+fadf,adf,00:50:74,5,5,Princesa,Princesa,Princesa,Princesa,Princesa,Princesa,Empate
+fadf,adf,00:50:74,5,5,Princesa,Princesa,Princesa,Princesa,Princesa,Princesa,Empate
