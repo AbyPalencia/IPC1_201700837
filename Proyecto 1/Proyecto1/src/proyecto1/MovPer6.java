@@ -6,6 +6,7 @@ public class MovPer6 extends Thread{
     public int cantidad=0;
     public static int op;
     public Tablero tab=null;
+    public Juego jue;
     
     public MovPer6(int cantidad, Tablero tab,int op){
         this.cantidad= cantidad;
@@ -53,11 +54,22 @@ public class MovPer6 extends Thread{
                     tab.vecG[tab.posperx[6]][tab.pospery[6]].setIcon(null);
                     tab.repintar();
                     tab.pospery[6]+=1;
-                    tab.vecL[tab.posperx[6]][tab.pospery[6]]=6;
+                    if(tab.vecL[tab.posperx[6]][tab.pospery[6]]==8){
+                        int a =Integer.parseInt(jue.v2.getText())-1;
+                        jue.v2.setText(""+a);
+                        tab.vecL[tab.posperx[6]][tab.pospery[6]]=8;
+                        tab.repintar();//patrones de diseño
+                        cantidad--;
+                    Thread.sleep(500);
+                    moverAbajo(cantidad);
+                    }else{
+                      tab.vecL[tab.posperx[6]][tab.pospery[6]]=6;
                     tab.repintar();
                     cantidad--;
                     Thread.sleep(500);
-                    moverAbajo(cantidad);
+                    moverAbajo(cantidad);  
+                    }
+                    
                     /*}  */     break;
             case 1:
                 //izquierda
@@ -75,11 +87,22 @@ public class MovPer6 extends Thread{
                     tab.vecG[tab.posperx[6]][tab.pospery[6]].setIcon(null);
                     tab.repintar();
                     tab.pospery[6]-=1;
-                    tab.vecL[tab.posperx[6]][tab.pospery[6]]=6;
+                    if(tab.vecL[tab.posperx[6]][tab.pospery[6]]==8){
+                        int a =Integer.parseInt(jue.v2.getText())-1;
+                        jue.v2.setText(""+a);
+                        tab.vecL[tab.posperx[6]][tab.pospery[6]]=8;
+                        tab.repintar();//patrones de diseño
+                        cantidad--;
+                    Thread.sleep(500);
+                    moverAbajo(cantidad);
+                    }else{
+                        tab.vecL[tab.posperx[6]][tab.pospery[6]]=6;
                     tab.repintar();
                     cantidad--;
                     Thread.sleep(500);
-                    moverAbajo(cantidad);
+                    moverAbajo(cantidad); 
+                    }
+                   
                     /* }*/       break;
             case 2:
                 //abajo
@@ -97,11 +120,22 @@ public class MovPer6 extends Thread{
                     tab.vecG[tab.posperx[6]][tab.pospery[6]].setIcon(null);
                     tab.repintar();
                     tab.posperx[6]+=1;
-                    tab.vecL[tab.posperx[6]][tab.pospery[6]]=6;
+                    if(tab.vecL[tab.posperx[6]][tab.pospery[6]]==8){
+                        int a =Integer.parseInt(jue.v2.getText())-1;
+                        jue.v2.setText(""+a);
+                        tab.vecL[tab.posperx[6]][tab.pospery[6]]=8;
+                        tab.repintar();//patrones de diseño
+                        cantidad--;
+                    Thread.sleep(500);
+                    moverAbajo(cantidad);
+                    }else{
+                      tab.vecL[tab.posperx[6]][tab.pospery[6]]=6;
                     tab.repintar();
                     cantidad--;
                     Thread.sleep(500);//solo hace que se detenga la vista del movimiento
-                    moverAbajo(cantidad);
+                    moverAbajo(cantidad);  
+                    }
+                    
                     /* }  */     break;
             case 3:
                 //arriba
@@ -119,11 +153,22 @@ public class MovPer6 extends Thread{
                     tab.vecG[tab.posperx[6]][tab.pospery[6]].setIcon(null);
                     tab.repintar();
                     tab.posperx[6]-=1;
-                    tab.vecL[tab.posperx[6]][tab.pospery[6]]=6;
+                    if(tab.vecL[tab.posperx[6]][tab.pospery[6]]==8){
+                        int a =Integer.parseInt(jue.v2.getText())-1;
+                        jue.v2.setText(""+a);
+                        tab.vecL[tab.posperx[6]][tab.pospery[6]]=8;
+                        tab.repintar();//patrones de diseño
+                        cantidad--;
+                    Thread.sleep(500);
+                    moverAbajo(cantidad);
+                    }else{
+                      tab.vecL[tab.posperx[6]][tab.pospery[6]]=6;
                     tab.repintar();
                     cantidad--;
                     Thread.sleep(500);//solo hace que se detenga la vista del movimiento
-                    moverAbajo(cantidad);
+                    moverAbajo(cantidad);  
+                    }
+                    
                     /* }*/
             default:
                 break;
@@ -135,7 +180,7 @@ public class MovPer6 extends Thread{
                 moverAbajo(cantidad);
          
         } catch (InterruptedException ex) {
-            Logger.getLogger(Movimiento.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MovPer6.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

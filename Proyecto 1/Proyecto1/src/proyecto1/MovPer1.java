@@ -15,10 +15,8 @@ public class MovPer1 extends Thread{
         this.op=op;      
     }
     public boolean comprobarFin(){
-        for (int i = 1; i <tab.tam; i++) {
-            if (tab.pospery[i]>=tab.tam-1) {//almacenamiento log
-            return true;//bufferedWriter y PrintWriter son iguales
-        }//ruta absoluta y ruta relativa
+            if (tab.posperx[1]>=tab.tam-1||tab.pospery[1]>=tab.tam-1) {
+            return true;
         }
         return false;    
     }
@@ -45,16 +43,15 @@ public class MovPer1 extends Thread{
         switch (op) {
             case 0:
                 //derecha
-                /*if (comprobarFin()) {
+                if (comprobarFin()) {
                 cantidad=0;
-                tab.vecL[tab.tam-1][tab.tam-1]=0;
-                tab.vecG[tab.tam-1][tab.tam-1].setIcon(null);
-                tab.posperx[0]=0;
-                tab.pospery[0]=0;
-                //    tab.vecL[0][0]=1;
+                tab.vecL[tab.posperx[1]][tab.tam-1]=0;
+                tab.vecG[tab.posperx[1]][tab.tam-1].setIcon(null);
+                tab.repintar();
+                tab.vecL[tab.tam/2][tab.tam/2]=1;
                 tab.repintar();
                 return;
-                }else{*/
+                }else{
                     //mover una posicion
                     tab.vecL[tab.posperx[1]][tab.pospery[1]]=0;
                     tab.vecG[tab.posperx[1]][tab.pospery[1]].setIcon(null);
@@ -74,7 +71,7 @@ public class MovPer1 extends Thread{
                     cantidad--;
                     Thread.sleep(500);
                     moverAbajo(cantidad);
-                    }
+                    }}
                     
                     /*}  */     break;
             case 1:
@@ -184,7 +181,7 @@ public class MovPer1 extends Thread{
                 moverAbajo(cantidad);
          
         } catch (InterruptedException ex) {
-            Logger.getLogger(Movimiento.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MovPer1.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
