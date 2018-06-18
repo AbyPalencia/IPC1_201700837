@@ -13,13 +13,6 @@ public class Personaje {
         
     }
     public ImageIcon princesa1(int tamy, int tamx){
-        /*if(in.jper1.getSelectedIndex()==0||in.jper2.getSelectedIndex()==0||in.jper3.getSelectedIndex()==0){
-            nombre ="/imagenes/princesa1.png";
-        }else if(in.jper1.getSelectedIndex()==1||in.jper2.getSelectedIndex()==1||in.jper3.getSelectedIndex()==1){
-            nombre ="/imagenes/mago1.png";
-        }else if(in.jper1.getSelectedIndex()==2||in.jper2.getSelectedIndex()==2||in.jper3.getSelectedIndex()==2){
-            nombre ="/imagenes/guerrero1.png";
-        }*/
        ImageIcon per =new ImageIcon(getClass().getResource("/imagenes/princesa1.png"));
        Image imagen= per.getImage();
        Image tamimagen=imagen.getScaledInstance(tamx, tamy, Image.SCALE_SMOOTH);

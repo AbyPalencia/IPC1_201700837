@@ -1,19 +1,17 @@
-
 package proyecto1;
-
 import javax.swing.JOptionPane;
 
 public class Inicio extends javax.swing.JFrame {
 
 public Juego ini;
-public static int p1=0, p2=0, p3=0;
+public static int p1=0, p2=0, p3=0, p4=0, p5=0, p6=0, time;
+public static String datos;
     public Inicio() {
         this.setBounds(350, 200, 500, 400);
         
         initComponents();
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -36,6 +34,8 @@ public static int p1=0, p2=0, p3=0;
         jLabel9 = new javax.swing.JLabel();
         jper4 = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jtiempo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -102,6 +102,9 @@ public static int p1=0, p2=0, p3=0;
             }
         });
 
+        jLabel10.setForeground(new java.awt.Color(153, 0, 153));
+        jLabel10.setText("Límite de tiempo del juego (min):");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -130,11 +133,6 @@ public static int p1=0, p2=0, p3=0;
                         .addGap(31, 31, 31)
                         .addComponent(jper3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel6)
-                        .addGap(35, 35, 35)
-                        .addComponent(jnombre2, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(70, 70, 70)
                         .addComponent(jLabel7)
                         .addGap(23, 23, 23)
@@ -146,12 +144,21 @@ public static int p1=0, p2=0, p3=0;
                         .addGap(38, 38, 38)
                         .addComponent(jLabel9)
                         .addGap(23, 23, 23)
-                        .addComponent(jper6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(40, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(187, 187, 187))
+                        .addComponent(jper6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(35, 35, 35)
+                                .addComponent(jnombre2, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jtiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(32, 32, 32))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -188,29 +195,37 @@ public static int p1=0, p2=0, p3=0;
                             .addComponent(jLabel7)
                             .addComponent(jLabel8)
                             .addComponent(jLabel9))))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(jtiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(24, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        p1=this.jper1.getSelectedIndex();
-        p2=this.jper2.getSelectedIndex();
-        p3=this.jper3.getSelectedIndex();
-       System.out.println(this.jper1.getSelectedIndex()+"   "+this.jper2.getSelectedIndex()+"   "+this.jper3.getSelectedIndex());
-       if(jnombre1.getText().equals("")||jnombre2.getText().equals("")){
+ 
+     //  System.out.println(this.jper1.getSelectedIndex()+"   "+this.jper2.getSelectedIndex()+"   "+this.jper3.getSelectedIndex());
+       // System.out.println("teimpo"+time);
+       if(jnombre1.getText().equals("")||jnombre2.getText().equals("")||jtiempo.getText().equals("")){
            JOptionPane.showMessageDialog(null, "Faltan datos");
        }else{
+           time=Integer.parseInt(jtiempo.getText());
        ini = new Juego();
        ini.setVisible(true);
        ini.setLocationRelativeTo(null);
-       ini.setBounds(100, 50, 800, 550);
+       ini.setBounds(100, 50, 800, 520);
+       ini.setResizable(false);
        this.setVisible(false);
-       
        transferirDatos();
+       
        }
        
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -224,6 +239,16 @@ public static int p1=0, p2=0, p3=0;
         ini.jper4.setText(this.jper4.getSelectedItem().toString());
         ini.jper5.setText(this.jper5.getSelectedItem().toString());
         ini.jper6.setText(this.jper6.getSelectedItem().toString());
+        
+       
+        p1=this.jper1.getSelectedIndex();
+        p2=this.jper2.getSelectedIndex();
+        p3=this.jper3.getSelectedIndex();
+        p4=this.jper4.getSelectedIndex();
+        p5=this.jper5.getSelectedIndex();
+        p6=this.jper6.getSelectedIndex();
+//datos="Datos del jugador1: "+this.jnombre1.getText()+"v: "+ini.v1.getText()+" "+this.jper1.getSelectedItem().toString()+" "+this.jper2.getSelectedItem().toString()+" "+this.jper3.getSelectedItem().toString()+"Datos del jugador2: "+this.jnombre2.getText()+"v: "+v2.getText()+" "+jper4.getText()+" "+jper5.getText()+" "+jper6.getText()+"Tiempo: "+tiempo.getText();
+
 
 }
     private void jnombre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jnombre1ActionPerformed
@@ -267,6 +292,7 @@ public static int p1=0, p2=0, p3=0;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -283,5 +309,6 @@ public static int p1=0, p2=0, p3=0;
     public javax.swing.JComboBox<String> jper4;
     public javax.swing.JComboBox<String> jper5;
     public javax.swing.JComboBox<String> jper6;
+    public javax.swing.JTextField jtiempo;
     // End of variables declaration//GEN-END:variables
 }

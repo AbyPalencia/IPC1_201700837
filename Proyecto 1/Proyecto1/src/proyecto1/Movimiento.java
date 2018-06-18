@@ -8,6 +8,7 @@ public class Movimiento extends Thread{
     public int cantidad=0;
     public static int op;
     public Tablero tab=null;
+    public Juego ju = new Juego();
     public Movimiento(int cantidad, Tablero tab,int op){
         this.cantidad= cantidad;
         this.tab= tab;
@@ -52,8 +53,8 @@ public class Movimiento extends Thread{
                 }else{
                     System.out.println(tab.posperx[0] +""+tab.pospery[0]);
                     //mover una posicion
-                    tab.vecL[tab.posperx[0]][tab.pospery[0]]=0;
-                    tab.vecG[tab.posperx[0]][tab.pospery[0]].setIcon(null);
+                    tab.vecL[tab.posperx[ju.contador]][tab.pospery[ju.contador]]=0;
+                    tab.vecG[tab.posperx[ju.contador]][tab.pospery[ju.contador]].setIcon(null);
                     tab.repintar();
                     tab.pospery[0]+=1;
                     tab.vecL[tab.posperx[0]][tab.pospery[0]]=1;
