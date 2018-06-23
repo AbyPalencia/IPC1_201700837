@@ -1,1 +1,4 @@
 Aby,gabriel,00:11:38,3,5,Princesa,Mago,Guerrero,Guerrero,Mago,Princesa,gabriel
+Aby,Ana,00:59:99,5,5,Princesa,Guerrero,Mago,Guerrero,Princesa,Mago,Empate
+Aby,Ana,00:59:99,5,5,Princesa,Guerrero,Mago,Guerrero,Princesa,Mago,Empate
+ana,aby,00:59:99,5,4,Mago,Princesa,Princesa,Princesa,Princesa,Princesa,ana
