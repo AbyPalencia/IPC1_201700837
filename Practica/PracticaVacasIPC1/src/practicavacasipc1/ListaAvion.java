@@ -22,9 +22,10 @@ public class ListaAvion {
     }  
     
     public void disminuirTurno(){
+        if(primero!=null){
             NodoAvion aux = primero;
             NodoAvion antaux=null;
-            while(aux!=null){
+            while(aux.siguiente!=null){
                 int desabordaje=aux.getDesbordaje()-1;
                 aux.setDesbordaje(desabordaje);
                 //aux=aux.siguiente;
@@ -33,24 +34,29 @@ public class ListaAvion {
                         primero=primero.siguiente;
                         aux.siguiente=null;
                         aux=primero;
+                        return;
                     }else{
                         antaux.siguiente=aux.siguiente;
                         aux.siguiente=null;
                         aux=antaux.siguiente;
                         aux.anterior=antaux;
+                        return;
                     }
                 }else{
                     antaux=aux;
                     aux=aux.siguiente;
                 }
             }
+            if(aux.getDesbordaje()==0){
+                antaux.siguiente=null;
+                aux=null;
+            }
+        }
     }
     
     public void recorrer(){
-        
         if(estaVacia()){
-            System.out.println("No hay Aviones");
-            
+            datos="No hay Aviones";    
         }else{
             NodoAvion aux= primero;
             String sangria="     ";

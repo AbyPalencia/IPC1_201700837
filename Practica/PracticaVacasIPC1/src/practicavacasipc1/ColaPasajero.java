@@ -18,14 +18,23 @@ public class ColaPasajero {
         aux=aux.sig;
     }
     aux.sig=nuevo;
-  //  nuevo.anterior=aux;
         }
     }
+    
+    public void eliminar5(){
+        if(primero!=null){
+            int contador=1;
+            while(contador<=5){
+                primero=primero.sig; 
+                contador++;
+            }     
+        }
+    }
+    
     public String recorrer(){
         
         if(estaVacia()){
-            System.out.println("No hay Aviones");
-            
+            datos="No hay Aviones";
         }else{
             NodoPasajero aux= primero;
             String sangria="     ";
@@ -42,4 +51,5 @@ public class ColaPasajero {
         }
         return datos;
     }
+    
 }

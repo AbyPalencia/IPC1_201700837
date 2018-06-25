@@ -1,18 +1,24 @@
 package practicavacasipc1;
 
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 public class Inicio extends javax.swing.JFrame {
     public static int turnoDesabordaje=0,noPasajeros,noMantenimiento, contador, maletas,documentos;
+    public static int contPasajeros, nomaleta=1;
     public static String tamañoAvion;
     public ListaAvion listadoble= new ListaAvion();
     public ColaPasajero cola= new ColaPasajero();
+    public ListaMaleta listamaleta = new ListaMaleta();
     
     public Inicio() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-    
+    public void DatosPasajeros(){
+        maletas = (int)(Math.random()*4)+1;
+        documentos = (int)(Math.random()*10)+1;
+    }
     public void TamañoAvion(){
        int tamaño = (int)(Math.random()*3);
         switch (tamaño) {
@@ -45,10 +51,7 @@ public class Inicio extends javax.swing.JFrame {
             default:
                 break;
         }
-        maletas = (int)(Math.random()*4)+1;
-        documentos = (int)(Math.random()*10)+1;
      System.out.println(tamañoAvion+"  "+noPasajeros+"  "+turnoDesabordaje+"  "+noMantenimiento);
-      
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -108,7 +111,7 @@ public class Inicio extends javax.swing.JFrame {
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, -1, 20));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -4, -1, 440));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 430));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -117,56 +120,67 @@ public class Inicio extends javax.swing.JFrame {
        if("".equals(avion.getText())||"".equals(estaciones.getText())){
            JOptionPane.showMessageDialog(null, "Ingrese los datos");
        }else{
-           contador=1;
+           try{
+           contador=contPasajeros=1;//todo inicia con el primer turno
            TamañoAvion();
            listadoble.insertarFinal(new NodoAvion(contador,tamañoAvion, noPasajeros, turnoDesabordaje, noMantenimiento));
            listadoble.recorrer();
-           cola.insertarFinal(new NodoPasajero(contador, maletas, documentos));
-           area.append("++++++++++Turno "+contador+"++++++++++\n"+listadoble.datos+cola.recorrer());
+           
+           
+           while(noPasajeros!=0){
+               DatosPasajeros();
+               cola.insertarFinal(new NodoPasajero(contPasajeros, maletas, documentos));
+               while(maletas!=0){
+                   listamaleta.insertar(new NodoMaleta(nomaleta));
+                   nomaleta++;
+                   maletas--;
+               }
+               contPasajeros++;
+               noPasajeros--;    
+           }
+           // mostrar en el JTextArea
+           area.setForeground(Color.BLUE);
+           area.append("++++++++++++++TURNO "+contador+"++++++++++++++\n");
+           area.append(listadoble.datos+cola.recorrer());
+          area.append(listamaleta.recorrer());
+           area.append("++++++++++TURNO "+contador+" FINALIZADO++++++++++\n");
+           
            System.out.println(listadoble.datos);
-           generar.setEnabled(false);
-       }
-        
-        //listadoble.insertarFinal(new NodoAvion("hola", 2, 3, 1));
-        /*  int noavion=Integer.parseInt(avion.getText());
-        do{
-        
-        if(listadoble.primero!=null){
-        }else{
-        JOptionPane.showMessageDialog(null, "No hay Aviones");
-        }
-        noavion--;
-        }while(noavion!=0);*/
-        
-          /*        do{
-          try{
-          TamañoAvion();
-          listadoble.agregarInicio(tamañoAvion, noPasajeros, turnoDesabordaje, noMantenimiento);
-          if(!listadoble.estaVacia()){
-          listadoble.mostrarInicioFin();
-          }else{
-          JOptionPane.showMessageDialog(null, "No hay Aviones");
-          }
-          area.setText(listadoble.datos);
-          noavion--;
-          }catch(NumberFormatException n){
+           generar.setEnabled(false);//deshabilita el boton de generar
+           
+           }catch(NumberFormatException n){
           JOptionPane.showMessageDialog(null,"Error "+n.getMessage());
+          generar.setEnabled(true);
           }
-          }while(noavion!=0);*/
+       }
     }//GEN-LAST:event_generarActionPerformed
 
     private void cambiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarActionPerformed
       try{
-          int noavion=Integer.parseInt(avion.getText());
-       contador++;
+          int noavion=Integer.parseInt(avion.getText());//obtengo el numero de aviones que me piden
+         contador++;//el turno 
         System.out.println(contador);
-       if(contador<=noavion){
-           listadoble.disminuirTurno();
-           TamañoAvion();
+       if(contador<=noavion){//que imprima solo el numero de aviones que me pidieron
+           
+           cola.eliminar5();//elimina 5 pasajeros
+           TamañoAvion();//genera datos del avion
+           listadoble.disminuirTurno();//disminuye el numero de turno de desbordaje
            listadoble.insertarFinal(new NodoAvion(contador,tamañoAvion, noPasajeros, turnoDesabordaje, noMantenimiento));
+           listadoble.disminuirTurno();//disminuye el numero de turno de desbordaje
            listadoble.recorrer();
-           cola.insertarFinal(new NodoPasajero(contador, maletas, documentos));  
-           area.append("++++++++++Turno "+contador+"++++++++++\n"+listadoble.datos+cola.recorrer());  
+           
+           while(noPasajeros!=0){//imprime el numero de pasajeros generado anteriormente
+               DatosPasajeros();
+               cola.insertarFinal(new NodoPasajero(contPasajeros, maletas, documentos));
+               contPasajeros++;//aumete el numero que identifica a cada pasajero
+               noPasajeros--;    
+           }
+           
+           //mostrar en el JtextArea
+           area.setForeground(Color.BLUE);
+           area.append("++++++++++++++TURNO "+contador+"++++++++++++++\n");
+           area.append(listadoble.datos+cola.recorrer());
+           area.append("++++++++++TURNO "+contador+" FINALIZADO++++++++++\n");
        }
       }catch(NumberFormatException n){
           JOptionPane.showMessageDialog(null,"Error "+n.getMessage());
@@ -206,7 +220,6 @@ public class Inicio extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JTextArea area;
     private javax.swing.JTextField avion;
@@ -219,3 +232,29 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
+ //listadoble.insertarFinal(new NodoAvion("hola", 2, 3, 1));
+        /*  int noavion=Integer.parseInt(avion.getText());
+        do{
+        
+        if(listadoble.primero!=null){
+        }else{
+        JOptionPane.showMessageDialog(null, "No hay Aviones");
+        }
+        noavion--;
+        }while(noavion!=0);*/
+        
+          /*        do{
+          try{
+          TamañoAvion();
+          listadoble.agregarInicio(tamañoAvion, noPasajeros, turnoDesabordaje, noMantenimiento);
+          if(!listadoble.estaVacia()){
+          listadoble.mostrarInicioFin();
+          }else{
+          JOptionPane.showMessageDialog(null, "No hay Aviones");
+          }
+          area.setText(listadoble.datos);
+          noavion--;
+          }catch(NumberFormatException n){
+          JOptionPane.showMessageDialog(null,"Error "+n.getMessage());
+          }
+          }while(noavion!=0);*/
