@@ -5,11 +5,13 @@ import javax.swing.JOptionPane;
 
 public class Inicio extends javax.swing.JFrame {
     public static int turnoDesabordaje=0,noPasajeros,noMantenimiento, contador, maletas,documentos;
-    public static int contPasajeros, nomaleta=1;
+    public static int contPasajeros, nomaleta=1, numeroestacion=1;
     public static String tamañoAvion;
     public ListaAvion listadoble= new ListaAvion();
     public ColaPasajero cola= new ColaPasajero();
     public ListaMaleta listamaleta = new ListaMaleta();
+    public ListaMantenimiento mante = new ListaMantenimiento();
+    public ColaMantenimiento colamante = new ColaMantenimiento();
     
     public Inicio() {
         initComponents();
@@ -126,7 +128,7 @@ public class Inicio extends javax.swing.JFrame {
            listadoble.insertarFinal(new NodoAvion(contador,tamañoAvion, noPasajeros, turnoDesabordaje, noMantenimiento));
            listadoble.recorrer();
            
-           
+           //----------------------PASAJEROS------------------------------------
            while(noPasajeros!=0){
                DatosPasajeros();
                cola.insertarFinal(new NodoPasajero(contPasajeros, maletas, documentos));
@@ -138,14 +140,23 @@ public class Inicio extends javax.swing.JFrame {
                contPasajeros++;
                noPasajeros--;    
            }
+           //--------------------ESTACIONES-------------------------------------
+           int noestacion = Integer.parseInt(estaciones.getText());
+           while(noestacion!=0){
+               mante.insertarFinal(new NodoListaMantenimiento(numeroestacion,"LIBRE"));
+               numeroestacion++;
+               noestacion--;
+           }
+           
            // mostrar en el JTextArea
            area.setForeground(Color.BLUE);
            area.append("++++++++++++++TURNO "+contador+"++++++++++++++\n");
-           area.append(listadoble.datos+cola.recorrer());
+           area.append(listadoble.datos);
+          area.append(cola.recorrer());
           area.append(listamaleta.recorrer());
+          area.append(mante.recorrer());
+
            area.append("++++++++++TURNO "+contador+" FINALIZADO++++++++++\n");
-           
-           System.out.println(listadoble.datos);
            generar.setEnabled(false);//deshabilita el boton de generar
            
            }catch(NumberFormatException n){
@@ -159,34 +170,45 @@ public class Inicio extends javax.swing.JFrame {
       try{
           int noavion=Integer.parseInt(avion.getText());//obtengo el numero de aviones que me piden
          contador++;//el turno 
-        System.out.println(contador);
-       if(contador<=noavion){//que imprima solo el numero de aviones que me pidieron
-           
+         
+        if(contador<=noavion){//que imprima solo el numero de aviones que me pidieron
+            
            cola.eliminar5();//elimina 5 pasajeros
            TamañoAvion();//genera datos del avion
            listadoble.disminuirTurno();//disminuye el numero de turno de desbordaje
            listadoble.insertarFinal(new NodoAvion(contador,tamañoAvion, noPasajeros, turnoDesabordaje, noMantenimiento));
-           listadoble.disminuirTurno();//disminuye el numero de turno de desbordaje
            listadoble.recorrer();
            
            while(noPasajeros!=0){//imprime el numero de pasajeros generado anteriormente
                DatosPasajeros();
                cola.insertarFinal(new NodoPasajero(contPasajeros, maletas, documentos));
+               //-------------------------maletas----------------------------
+               while(maletas!=0){
+                   listamaleta.insertar(new NodoMaleta(nomaleta));
+                   nomaleta++;
+                   maletas--;
+               }
                contPasajeros++;//aumete el numero que identifica a cada pasajero
                noPasajeros--;    
            }
+         //  colamante.insertarFinal(new NodoAvion(90,"dfs",4,323,23));
+           listadoble.probando();
            
-           //mostrar en el JtextArea
+           //--------------------mostrar en el JtextArea------------------------
            area.setForeground(Color.BLUE);
            area.append("++++++++++++++TURNO "+contador+"++++++++++++++\n");
-           area.append(listadoble.datos+cola.recorrer());
+           area.append(listadoble.datos);
+           area.append(cola.recorrer());
+           area.append(listamaleta.recorrer());
+           area.append(colamante.recorrer());
+           area.append(mante.recorrer());
            area.append("++++++++++TURNO "+contador+" FINALIZADO++++++++++\n");
+           area.append("\n");
        }
       }catch(NumberFormatException n){
           JOptionPane.showMessageDialog(null,"Error "+n.getMessage());
           generar.setEnabled(true);
-          }
-        
+          }    
     }//GEN-LAST:event_cambiarActionPerformed
 
     public static void main(String args[]) {
@@ -232,29 +254,3 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
- //listadoble.insertarFinal(new NodoAvion("hola", 2, 3, 1));
-        /*  int noavion=Integer.parseInt(avion.getText());
-        do{
-        
-        if(listadoble.primero!=null){
-        }else{
-        JOptionPane.showMessageDialog(null, "No hay Aviones");
-        }
-        noavion--;
-        }while(noavion!=0);*/
-        
-          /*        do{
-          try{
-          TamañoAvion();
-          listadoble.agregarInicio(tamañoAvion, noPasajeros, turnoDesabordaje, noMantenimiento);
-          if(!listadoble.estaVacia()){
-          listadoble.mostrarInicioFin();
-          }else{
-          JOptionPane.showMessageDialog(null, "No hay Aviones");
-          }
-          area.setText(listadoble.datos);
-          noavion--;
-          }catch(NumberFormatException n){
-          JOptionPane.showMessageDialog(null,"Error "+n.getMessage());
-          }
-          }while(noavion!=0);*/

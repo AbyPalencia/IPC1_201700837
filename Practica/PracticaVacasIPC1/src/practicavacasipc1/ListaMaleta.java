@@ -23,24 +23,17 @@ public class ListaMaleta {
                             primero.anterior=nuevo;
          }
        }
-    
-    /*public String recorrer(){
-    if(estaVacia()){
-    datos="No hay Aviones";
-    }else{
-    NodoMaleta aux= primero;
-    datos="*******************MALETAS*******************\n";
-    while(aux!=null){
-    datos = datos
-    +"Inicio: "+primero.getNoMaleta()+"\n"
-    +"Fin: "+ultimo.getNoMaleta()+"\n"
-    +"Maleta: "+aux.getNoMaleta()+"\n";
-    aux=aux.siguiente;
+
+   public void eliminar(int a){
+        if(primero!=null){
+            int contador=1;
+            while(contador<=a){
+                primero=primero.siguiente; 
+                contador++;
+            }     
+        }
     }
-    System.out.println("");
-    }
-    return datos;
-    }*/
+   
     public String recorrer(){
     if(estaVacia()){
     datos="No hay Aviones";

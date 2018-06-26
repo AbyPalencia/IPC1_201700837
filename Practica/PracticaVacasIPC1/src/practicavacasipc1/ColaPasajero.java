@@ -4,6 +4,8 @@ package practicavacasipc1;
 public class ColaPasajero {
     public NodoPasajero primero;
     public static String datos;
+    public static int a;
+    public ListaMaleta listamaleta = new ListaMaleta();
     
      public boolean estaVacia(){
         return null == primero;
@@ -20,11 +22,14 @@ public class ColaPasajero {
     aux.sig=nuevo;
         }
     }
-    
+    //5->6
     public void eliminar5(){
         if(primero!=null){
             int contador=1;
             while(contador<=5){
+                /* a=primero.getMaletas();
+                listamaleta.eliminar(a);
+                System.out.println("maletassss "+a);*/
                 primero=primero.sig; 
                 contador++;
             }     
