@@ -51,7 +51,8 @@ public class ColaPasajero {
                 datos = datos
                         +"PASAJERO "+aux.getNoPasajero()+"\n"
                         +sangria+"No. de Maletas: "+aux.getMaletas()+"\n"
-                        +sangria+"No. de Documentos: "+aux.getDocumentos()+"\n";
+                        +sangria+"No. de Documentos: "+aux.getDocumentos()+"\n"
+                        +sangria+"Turnos en el escritorio de registro: "+aux.getTurnoregistro()+"\n";
 
            aux=aux.sig;
             }
