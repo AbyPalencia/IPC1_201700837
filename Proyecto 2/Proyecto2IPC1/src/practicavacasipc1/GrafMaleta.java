@@ -1,8 +1,8 @@
 package practicavacasipc1;
 import java.io.*;
 
-public class GrafAviones {
-    public void crearDot(NodoAvion primero, String nombre){
+public class GrafMaleta {
+    public void crearDot(NodoMaleta primero, String nombre){
         FileWriter fw=null;
         PrintWriter pw=null;
         
@@ -10,8 +10,6 @@ public class GrafAviones {
         fw=new FileWriter(nombre+".dot"); 
         pw = new PrintWriter(fw);
         pw.println("digraph listadoble {");
-       // pw.println("rankdir=LR; \n");
-        //pw.println("node [shape = record];\n");
         pw.println(generarDot(primero));
         pw.println("}");
         pw.close();
@@ -25,17 +23,17 @@ public class GrafAviones {
         String cadena=String.valueOf(posmemoria);
         return cadena.replace("-", "_");
     }
-    public String generarDot(NodoAvion primero){
+    public String generarDot(NodoMaleta primero){
         String cadena="";
         if(primero==null){
             return cadena;
         }
-        cadena+="nodo"+reemplazar(primero.hashCode())+"[label=\""+"Avion No. "
-                +primero.getNoavion()+" : \n"+primero.getTamaño()+" Pasajeros "+primero.getPasajeros()+"\n"
-                +" No. desabordaje "+primero.getDesbordaje()+" No. mantenimiento "+primero.getMatenimiento()+"\"];\n";
+        cadena+="nodo"+reemplazar(primero.hashCode())+"[label=\""+"Maleta No. "+primero.getNoMaleta()+"\"];\n";
         if(primero.siguiente!=null){
             cadena+="nodo"+reemplazar(primero.hashCode())+"->"+"nodo"+reemplazar(primero.siguiente.hashCode())+";\n";
             cadena+="nodo"+reemplazar(primero.siguiente.hashCode())+"->"+"nodo"+reemplazar(primero.siguiente.anterior.hashCode())+";\n";
+            cadena+="nodo"+reemplazar(primero.siguiente.anterior.anterior.hashCode())+"->"+"nodo"+reemplazar(primero.hashCode())+";\n";
+            cadena+="nodo"+reemplazar(primero.siguiente.anterior.siguiente.hashCode())+"->"+"nodo"+reemplazar(primero.siguiente.anterior.hashCode())+";\n";
             cadena+=generarDot(primero.siguiente);
         }
         return cadena;
@@ -48,4 +46,5 @@ public class GrafAviones {
         } catch (IOException ex) {
         }
     }
+    
 }

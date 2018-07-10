@@ -8,26 +8,49 @@ import javax.swing.JOptionPane;
 
 public class Inicio extends javax.swing.JFrame {
     public static int turnoDesabordaje=0,noPasajeros,noMantenimiento, contador, maletas,documentos;
-    public static int contPasajeros, nomaleta=1, numeroestacion=1,turnoregistro;
-    public static String tamañoAvion;
+    public static int contPasajeros, nomaleta, numeroestacion=1,turnoregistro;
+    public static String tamañoAvion, letraescritorio;
+    
     public ListaAvion listadoble= new ListaAvion();
+    public static ListaMaleta listamaleta = new ListaMaleta();
+    public static ListaMantenimiento mante = new ListaMantenimiento();
+    public ListaEscritorio listaescritorio = new ListaEscritorio();
+    
     public ColaPasajero cola= new ColaPasajero();
-    public ListaMaleta listamaleta = new ListaMaleta();
-    public ListaMantenimiento mante = new ListaMantenimiento();
-    public ColaMantenimiento colamante = new ColaMantenimiento();
+    public static ColaMantenimiento colamante = new ColaMantenimiento();
+   // public static ColaEscritorio colaescritorio;
+    
     public GrafAviones g = new GrafAviones();
+    public GrafPasajero gpasajero = new GrafPasajero();
+    public GrafMaleta gmaleta = new GrafMaleta();
+    
     public MostrarAviones ma = new MostrarAviones();
+    public MostrarPasajero mp = new MostrarPasajero();
+    public MostrarMaletas mm = new MostrarMaletas();
     
     public Inicio() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
+   
     public void DatosPasajeros(){
         maletas = (int)(Math.random()*4)+1;
         documentos = (int)(Math.random()*10)+1;
         turnoregistro = (int)(Math.random()*3)+1;
-        
     }
+    
+    public void LetraEscritorio(){
+        try{
+    String [] abecedario =new String[] {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
+    "K", "L", "M","N","O","P","Q","R","S","T","U","V","W", "X","Y","Z" };
+    int numRandon = (int) Math.round(Math.random()*25) ;
+    letraescritorio = abecedario[numRandon];
+        }catch(NumberFormatException n){
+          JOptionPane.showMessageDialog(null,"Error "+n.getMessage());
+          generar.setEnabled(true);
+          }
+    }
+    
     public void TamañoAvion(){
        int tamaño = (int)(Math.random()*3);
         switch (tamaño) {
@@ -155,7 +178,7 @@ public class Inicio extends javax.swing.JFrame {
                 btnescritoriosActionPerformed(evt);
             }
         });
-        getContentPane().add(btnescritorios, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 200, 200, 50));
+        getContentPane().add(btnescritorios, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 200, 200, 50));
 
         desabordaje.setBackground(new java.awt.Color(51, 51, 255));
         desabordaje.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
@@ -197,20 +220,41 @@ public class Inicio extends javax.swing.JFrame {
            contador=contPasajeros=1;//todo inicia con el primer turno
            TamañoAvion();
            listadoble.insertarFinal(new NodoAvion(contador,tamañoAvion, noPasajeros, turnoDesabordaje, noMantenimiento));
-           listadoble.recorrer();
            
            //----------------------PASAJEROS------------------------------------
            while(noPasajeros!=0){
                DatosPasajeros();
                cola.insertarFinal(new NodoPasajero(contPasajeros, maletas, documentos,turnoregistro));
                while(maletas!=0){
-                   listamaleta.insertar(new NodoMaleta(nomaleta));
                    nomaleta++;
+                   listamaleta.insertar(new NodoMaleta(nomaleta));
                    maletas--;
                }
                contPasajeros++;
                noPasajeros--;    
            }
+           //------------------------ESCRITORIOS--------------------------------
+           int noescritorios = Integer.parseInt(escritorios.getText());
+           /*for(int j=1; j<=noescritorios; j++){
+           LetraEscritorio();
+           listaescritorio.insertarFinal(new NodoEscritorio(letraescritorio,"libre"));
+           colaescritorio = new ColaEscritorio(letraescritorio);
+           for(int i=1;i<=7;i++){
+           colaescritorio.insertarFinal(new NodoPasajero(2,3,2,12));
+           }
+           }*/
+           while(noescritorios!=0){
+               LetraEscritorio();
+               listaescritorio.insertarFinal(new NodoEscritorio(letraescritorio,"libre"));
+               listaescritorio.crearCola(letraescritorio);
+               /* colaescritorio = new ColaEscritorio(letraescritorio);
+               for(int i=1;i<=7;i++){
+               colaescritorio.insertarFinal(new NodoPasajero(2,3,2,12));
+               }*/
+               noescritorios--;
+           }
+           
+           
            //--------------------ESTACIONES-------------------------------------
            int noestacion = Integer.parseInt(estaciones.getText());
            while(noestacion!=0){
@@ -222,12 +266,14 @@ public class Inicio extends javax.swing.JFrame {
            // mostrar en el JTextArea
            area.setForeground(Color.BLUE);
            area.append("++++++++++++++TURNO "+contador+"++++++++++++++\n");
-           area.append(listadoble.datos);
-           area.append(cola.recorrer());
-           area.append(listamaleta.recorrer());
+           area.append(listadoble.recorrer());      //Aviones
+           area.append(cola.recorrer());            //pasajeros
+           area.append(listamaleta.recorrer());     //Maletas
+           area.append(listaescritorio.recorrer()); //Lista escritorio
+         //  area.append(colaescritorio.recorrer());  //Cola escritorio
            area.append(colamante.recorrer());
            area.append(mante.recorrer());
-
+           
            area.append("++++++++++TURNO "+contador+" FINALIZADO++++++++++\n");
            generar.setEnabled(false);//deshabilita el boton de generar
            
@@ -241,58 +287,71 @@ public class Inicio extends javax.swing.JFrame {
        g.generarImagen("listaDoble.dot", "listaDoble.png");
        ImageIcon fot = new ImageIcon("listaDoble.png");
        Icon icono = new ImageIcon(fot.getImage().getScaledInstance(ma.imagen.getWidth(),ma.imagen.getHeight(), Image.SCALE_DEFAULT));
-       ma.imagen.setIcon(icono);
+       ma.imagen.setIcon(new ImageIcon("listaDoble.png"));
        ma.repaint();
+       
+       gpasajero.crearDot(cola.primero, "mostrarPasajero");
+       g.generarImagen("mostrarPasajero.dot", "mostrarPasajero.png");
+       ImageIcon fotpas = new ImageIcon("mostrarPasajero.png");
+       Icon iconopas = new ImageIcon(fotpas.getImage().getScaledInstance(mp.imagen.getWidth(),mp.imagen.getHeight(), Image.SCALE_DEFAULT));
+       mp.imagen.setIcon(iconopas);
+       mp.repaint();
+       
+       /*       gmaleta.crearDot(listamaleta.primero, "mostrarMaleta");
+       gmaleta.generarImagen("mostrarMaleta.dot", "mostrarMaleta.png");
+       ImageIcon fotmaleta = new ImageIcon("mostrarMaleta.png");
+       Icon iconomaleta = new ImageIcon(fotmaleta.getImage().getScaledInstance(mm.imagen.getWidth(),mm.imagen.getHeight(), Image.SCALE_DEFAULT));
+       mm.imagen.setIcon(iconomaleta);
+       mm.repaint();*/
 
     }//GEN-LAST:event_generarActionPerformed
 
     private void cambiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarActionPerformed
       try{
           int noavion=Integer.parseInt(avion.getText());//obtengo el numero de aviones que me piden
-         contador++;//el turno 
-         
-        if(contador<=noavion){//que imprima solo el numero de aviones que me pidieron
-            
-           cola.eliminar5();//elimina 5 pasajeros
+          contador++;//el turno 
+          cola.eliminar5();//elimina 5 pasajeros
+          
            TamañoAvion();//genera datos del avion
            listadoble.disminuirTurno();//disminuye el numero de turno de desbordaje
+           
+        if(contador<=noavion){//que imprima solo el numero de aviones que me pidieron
            listadoble.insertarFinal(new NodoAvion(contador,tamañoAvion, noPasajeros, turnoDesabordaje, noMantenimiento));
-           listadoble.recorrer();
-           
-           if(listadoble.noavion==0&&listadoble.tamaño==null&&listadoble.pasajero==0&&listadoble.desabordaje==0&&listadoble.mantenimiento==0){
-               System.out.println("La cola de mantenimiento esta vacia");
-           }else{
-             colamante.insertarFinal(new NodoAvion(listadoble.noavion,listadoble.tamaño,listadoble.pasajero,listadoble.desabordaje,listadoble.mantenimiento));             
-           }
-           
-           
-           
-           while(noPasajeros!=0){//imprime el numero de pasajeros generado anteriormente
-               DatosPasajeros();
-               cola.insertarFinal(new NodoPasajero(contPasajeros, maletas, documentos,turnoregistro));
+        while(noPasajeros!=0){//imprime el numero de pasajeros generado anteriormente
+            DatosPasajeros();
+            cola.insertarFinal(new NodoPasajero(contPasajeros, maletas, documentos,turnoregistro));
+               
                //-------------------------maletas----------------------------
                while(maletas!=0){
-                   listamaleta.insertar(new NodoMaleta(nomaleta));
                    nomaleta++;
+                   listamaleta.insertar(new NodoMaleta(nomaleta));
                    maletas--;
                }
                contPasajeros++;//aumete el numero que identifica a cada pasajero
                noPasajeros--;    
            }
-         //  
-           listadoble.probando();
-           
+        }
+
+        
+        //--------------------------COLA MANTENIMIENTO--------------------------
+        /*if(listadoble.noavion==0&&listadoble.tamaño==null&&listadoble.pasajero==0&&listadoble.desabordaje==0&&listadoble.mantenimiento==0){
+        System.out.println("La cola de mantenimiento esta vacia");
+        }else{
+        colamante.insertarFinal(new NodoAvion(listadoble.noavion,listadoble.tamaño,listadoble.pasajero,listadoble.desabordaje,listadoble.mantenimiento));
+        }*/
+     
            //--------------------mostrar en el JtextArea------------------------
            area.setForeground(Color.BLUE);
            area.append("++++++++++++++TURNO "+contador+"++++++++++++++\n");
-           area.append(listadoble.datos);
-           area.append(cola.recorrer());
-           area.append(listamaleta.recorrer());
+           area.append(listadoble.recorrer());    //Aviones
+           area.append(cola.recorrer());          //Pasajeros
+           area.append(listamaleta.recorrer());   //Maletas
+          // area.append(colaescritorio.recorrer());
            area.append(colamante.recorrer());
            area.append(mante.recorrer());
            area.append("++++++++++TURNO "+contador+" FINALIZADO++++++++++\n");
            area.append("\n");
-       }
+ 
       }catch(NumberFormatException n){
           JOptionPane.showMessageDialog(null,"Error "+n.getMessage());
           generar.setEnabled(true);
@@ -302,8 +361,22 @@ public class Inicio extends javax.swing.JFrame {
        g.generarImagen("listaDoble.dot", "listaDoble.png");
        ImageIcon fot = new ImageIcon("listaDoble.png");
        Icon icono = new ImageIcon(fot.getImage().getScaledInstance(ma.imagen.getWidth(),ma.imagen.getHeight(), Image.SCALE_DEFAULT));
-       ma.imagen.setIcon(icono);
+       ma.imagen.setIcon(new ImageIcon("listaDoble.png"));
        ma.repaint();
+       
+       gpasajero.crearDot(cola.primero, "mostrarPasajero");
+       g.generarImagen("mostrarPasajero.dot", "mostrarPasajero.png");
+       ImageIcon fotpas = new ImageIcon("mostrarPasajero.png");
+       Icon iconopas = new ImageIcon(fotpas.getImage().getScaledInstance(mp.imagen.getWidth(),mp.imagen.getHeight(), Image.SCALE_DEFAULT));
+       mp.imagen.setIcon(iconopas);
+       mp.repaint();
+       
+       /*       gmaleta.crearDot(listamaleta.primero, "mostrarMaleta");
+       gmaleta.generarImagen("mostrarMaleta.dot", "mostrarMaleta.png");
+       ImageIcon fotmaleta = new ImageIcon("mostrarMaleta.png");
+       Icon iconomaleta = new ImageIcon(fotmaleta.getImage().getScaledInstance(mm.imagen.getWidth(),mm.imagen.getHeight(), Image.SCALE_DEFAULT));
+       mm.imagen.setIcon(iconomaleta);
+       mm.repaint();*/
     }//GEN-LAST:event_cambiarActionPerformed
 
     private void llegadaavionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_llegadaavionesActionPerformed
@@ -315,13 +388,20 @@ public class Inicio extends javax.swing.JFrame {
        ma.imagen.setIcon(icono);
        ma.repaint();
        
-       // this.setVisible(false);
         ma.setVisible(true);
         ma.setLocationRelativeTo(null);
     }//GEN-LAST:event_llegadaavionesActionPerformed
 
     private void desabordajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_desabordajeActionPerformed
-        // TODO add your handling code here:
+       gpasajero.crearDot(cola.primero, "mostrarPasajero");
+       g.generarImagen("mostrarPasajero.dot", "mostrarPasajero.png");
+       ImageIcon fotpas = new ImageIcon("mostrarPasajero.png");
+       Icon iconopas = new ImageIcon(fotpas.getImage().getScaledInstance(mp.imagen.getWidth(),mp.imagen.getHeight(), Image.SCALE_DEFAULT));
+       mp.imagen.setIcon(iconopas);
+       mp.repaint();
+       
+       mp.setVisible(true);
+       mp.setLocationRelativeTo(null);
     }//GEN-LAST:event_desabordajeActionPerformed
 
     private void btnescritoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnescritoriosActionPerformed
@@ -329,7 +409,15 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnescritoriosActionPerformed
 
     private void equipajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_equipajeActionPerformed
-        // TODO add your handling code here:
+       gmaleta.crearDot(listamaleta.primero, "mostrarMaleta");
+       gmaleta.generarImagen("mostrarMaleta.dot", "mostrarMaleta.png");
+       ImageIcon fotmaleta = new ImageIcon("mostrarMaleta.png");
+       Icon iconomaleta = new ImageIcon(fotmaleta.getImage().getScaledInstance(mm.imagen.getWidth(),mm.imagen.getHeight(), Image.SCALE_DEFAULT));
+       mm.imagen.setIcon(iconomaleta);
+       mm.repaint();
+       
+       mm.setVisible(true);
+       mm.setLocationRelativeTo(null);
     }//GEN-LAST:event_equipajeActionPerformed
 
     private void mantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mantenimientoActionPerformed

@@ -1,6 +1,11 @@
 digraph listadoble {
-nodo1291012575[label="Avion No. 3 : 
-Mediano Pasajeros 15
+nodo888807081[label="Avion No. 3 : 
+Mediano Pasajeros 16
+ No. desabordaje 1 No. mantenimiento 2"];
+nodo888807081->nodo1724524704;
+nodo1724524704->nodo888807081;
+nodo1724524704[label="Avion No. 4 : 
+Mediano Pasajeros 25
  No. desabordaje 2 No. mantenimiento 4"];
 
 }

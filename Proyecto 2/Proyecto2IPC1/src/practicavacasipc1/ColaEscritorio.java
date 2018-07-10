@@ -1,10 +1,13 @@
 package practicavacasipc1;
-public class ColaPasajero {
+public class ColaEscritorio {
     public NodoPasajero primero;
-    public static String datos;
+    public static String datos,letra;
     public static int a, size;
+    public ColaEscritorio(String letra){
+        this.letra=letra;
+    }
     
-     public boolean estaVacia(){
+    public boolean estaVacia(){
         return null == primero;
     }
      
@@ -20,29 +23,6 @@ public class ColaPasajero {
         }
         size++;
     }
-    //5->6
-    public void eliminar5(){
-        if(primero!=null){
-            if(size()<5){
-        int contador=1;
-            while(contador<=size()){
-                primero=primero.sig; 
-                contador++;
-            }
-            size=0;
-    }else{
-            int contador=1;
-            while(contador<=5){
-                 a=primero.getMaletas();
-                 System.out.println("maleta del pasajero "+ a);
-                 new Inicio().listamaleta.eliminar(a);
-                // new Inicio().colaescritorio.insertarFinal(primero);
-                primero=primero.sig; 
-                contador++;
-            }
-            size=size-5;
-        } }
-    }
     public int size(){
         return size;
     }
@@ -50,11 +30,11 @@ public class ColaPasajero {
     public String recorrer(){
         
         if(estaVacia()){
-            datos="No hay Pasajero\n";
+            datos="No hay Pasajeros en la cola de escritorio\n";
         }else{
             NodoPasajero aux= primero;
             String sangria="     ";
-            datos="*******************PASAJEROS*******************\n";
+            datos="******COLA DEL ESCRITORIO "+letra+"******\n";
             while(aux!=null){
                 datos = datos
                         +"PASAJERO "+aux.getNoPasajero()+"\n"
@@ -66,7 +46,7 @@ public class ColaPasajero {
             }
             System.out.println("");
         }
+       
         return datos;
     }
-    
 }

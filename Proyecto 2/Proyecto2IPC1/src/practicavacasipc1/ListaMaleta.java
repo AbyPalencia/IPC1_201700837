@@ -25,13 +25,19 @@ public class ListaMaleta {
        }
 
    public void eliminar(int a){
-        if(primero!=null){
-            int contador=1;
-            while(contador<=a){
-                primero=primero.siguiente; 
-                contador++;
-            }     
-        }
+       int contador=1;
+       NodoMaleta aux= primero;
+       NodoMaleta ant = null;
+       for(int i=contador; i<=a; i++){
+           ant= aux.anterior;
+           ant.siguiente=aux.siguiente;
+           aux=aux.siguiente;
+           aux.anterior=ant;
+           primero=aux;
+           ant=null;
+           contador++;
+       }
+       
     }
    
     public String recorrer(){

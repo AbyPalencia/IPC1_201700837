@@ -26,7 +26,7 @@ public class ColaMantenimiento {
         }else{
             NodoAvion aux= primero;
             String sangria="     ";
-            datos="*******************COLA MANTENIMIENTO*******************\n";
+            datos="************COLA MANTENIMIENTO************\n";
             while(aux!=null){
                 datos = datos
                         +"AVION "+aux.getNoavion()+"\n"
