@@ -36,8 +36,7 @@ public class ListaAvion {
             NodoAvion aux = primero;
             while(aux!=null){
                 aux.setDesbordaje(aux.getDesbordaje()-1);
-            if(aux.getDesbordaje()==0){
-                
+            if(aux.getDesbordaje()==0){ 
                 new Inicio().colamante.insertarFinal(aux);
                 eliminar(aux.getNoavion());
             }
@@ -99,3 +98,29 @@ public void eliminar(int no){
         return datos;
     }
 }
+/*public  void disminuirTurno(NodoListaMantenimiento ax){
+NodoAvion aux = primero;
+NodoListaMantenimiento uax= ax;
+while(aux!=null){
+aux.setDesbordaje(aux.getDesbordaje()-1);
+if(aux.getDesbordaje()==0){
+while(uax!=null){
+if("LIBRE".equals(uax.getEstado())){
+uax.setEstado("OCUPADO");
+uax.setNoavion(aux.getNoavion());
+uax.setPasajeros(aux.getPasajeros());
+uax.setTamaño(aux.getTamaño());
+uax.setDesbordaje(aux.getDesbordaje());
+uax.setMatenimiento(aux.getMatenimiento());
+return;
+}else{
+new Inicio().colamante.insertarFinal(aux);
+}
+uax= uax.siguiente;
+}
+eliminar(aux.getNoavion());
+}
+aux=aux.siguiente;
+}
+//subgrafos
+}*/

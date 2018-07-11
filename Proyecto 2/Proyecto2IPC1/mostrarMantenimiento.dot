@@ -1,0 +1,11 @@
+digraph listamatenimiento {
+
+rankdir=LR; 
+
+node [shape = box] 
+
+nodo1709438688[label="Estación No. 1 : 
+Estado: LIBRE Avion No. 0
+ Tipo:  Turnos de matenimiento: 0"];
+
+}

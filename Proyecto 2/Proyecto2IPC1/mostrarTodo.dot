@@ -1,4 +1,6 @@
-digraph listadoble {
+digraph listamatenimiento {
+subgraph cluster_0 {
+label="LLegada de aviones";
 nodo1819590479[label="Avion No. 1 : 
 Mediano Pasajeros 23
  No. desabordaje 1 No. mantenimiento 2"];
@@ -7,5 +9,7 @@ nodo2020798394->nodo1819590479;
 nodo2020798394[label="Avion No. 2 : 
 Pequeño Pasajeros 10
  No. desabordaje 1 No. mantenimiento 1"];
+
+}
 
 }

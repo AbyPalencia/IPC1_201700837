@@ -23,10 +23,14 @@ public class Inicio extends javax.swing.JFrame {
     public GrafAviones g = new GrafAviones();
     public GrafPasajero gpasajero = new GrafPasajero();
     public GrafMaleta gmaleta = new GrafMaleta();
+    public GrafMantenimiento gmantenimiento = new GrafMantenimiento();
+    public GrafTodo gtodo = new GrafTodo();
     
     public MostrarAviones ma = new MostrarAviones();
     public MostrarPasajero mp = new MostrarPasajero();
     public MostrarMaletas mm = new MostrarMaletas();
+    public MostrarMantenimiento mt = new  MostrarMantenimiento();
+    public MostrarTodo mto = new MostrarTodo();
     
     public Inicio() {
         initComponents();
@@ -83,7 +87,6 @@ public class Inicio extends javax.swing.JFrame {
             default:
                 break;
         }
-     System.out.println(tamañoAvion+"  "+noPasajeros+"  "+turnoDesabordaje+"  "+noMantenimiento);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -101,6 +104,7 @@ public class Inicio extends javax.swing.JFrame {
         equipaje = new javax.swing.JButton();
         mantenimiento = new javax.swing.JButton();
         btnescritorios = new javax.swing.JButton();
+        llegadaaviones1 = new javax.swing.JButton();
         desabordaje = new javax.swing.JButton();
         llegadaaviones = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -158,7 +162,7 @@ public class Inicio extends javax.swing.JFrame {
                 equipajeActionPerformed(evt);
             }
         });
-        getContentPane().add(equipaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 290, 200, 50));
+        getContentPane().add(equipaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 250, 200, 50));
 
         mantenimiento.setBackground(new java.awt.Color(51, 51, 255));
         mantenimiento.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
@@ -168,7 +172,7 @@ public class Inicio extends javax.swing.JFrame {
                 mantenimientoActionPerformed(evt);
             }
         });
-        getContentPane().add(mantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 370, 200, 50));
+        getContentPane().add(mantenimiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 320, 200, 50));
 
         btnescritorios.setBackground(new java.awt.Color(51, 51, 255));
         btnescritorios.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
@@ -178,7 +182,17 @@ public class Inicio extends javax.swing.JFrame {
                 btnescritoriosActionPerformed(evt);
             }
         });
-        getContentPane().add(btnescritorios, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 200, 200, 50));
+        getContentPane().add(btnescritorios, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 170, 200, 50));
+
+        llegadaaviones1.setBackground(new java.awt.Color(51, 51, 255));
+        llegadaaviones1.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
+        llegadaaviones1.setText("Todo");
+        llegadaaviones1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                llegadaaviones1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(llegadaaviones1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 390, 200, 50));
 
         desabordaje.setBackground(new java.awt.Color(51, 51, 255));
         desabordaje.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
@@ -188,7 +202,7 @@ public class Inicio extends javax.swing.JFrame {
                 desabordajeActionPerformed(evt);
             }
         });
-        getContentPane().add(desabordaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 110, 200, 50));
+        getContentPane().add(desabordaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 90, 200, 50));
 
         llegadaaviones.setBackground(new java.awt.Color(51, 51, 255));
         llegadaaviones.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
@@ -198,7 +212,7 @@ public class Inicio extends javax.swing.JFrame {
                 llegadaavionesActionPerformed(evt);
             }
         });
-        getContentPane().add(llegadaaviones, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 30, 200, 50));
+        getContentPane().add(llegadaaviones, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 20, 200, 50));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Eras Demi ITC", 1, 18)); // NOI18N
@@ -267,9 +281,9 @@ public class Inicio extends javax.swing.JFrame {
            area.setForeground(Color.BLUE);
            area.append("++++++++++++++TURNO "+contador+"++++++++++++++\n");
            area.append(listadoble.recorrer());      //Aviones
-           area.append(cola.recorrer());            //pasajeros
-           area.append(listamaleta.recorrer());     //Maletas
-           area.append(listaescritorio.recorrer()); //Lista escritorio
+           //area.append(cola.recorrer());            //pasajeros
+           //area.append(listamaleta.recorrer());     //Maletas
+           //area.append(listaescritorio.recorrer()); //Lista escritorio
          //  area.append(colaescritorio.recorrer());  //Cola escritorio
            area.append(colamante.recorrer());
            area.append(mante.recorrer());
@@ -297,13 +311,26 @@ public class Inicio extends javax.swing.JFrame {
        mp.imagen.setIcon(iconopas);
        mp.repaint();
        
-       /*       gmaleta.crearDot(listamaleta.primero, "mostrarMaleta");
+       gmaleta.crearDot(listamaleta.primero, "mostrarMaleta");
        gmaleta.generarImagen("mostrarMaleta.dot", "mostrarMaleta.png");
        ImageIcon fotmaleta = new ImageIcon("mostrarMaleta.png");
        Icon iconomaleta = new ImageIcon(fotmaleta.getImage().getScaledInstance(mm.imagen.getWidth(),mm.imagen.getHeight(), Image.SCALE_DEFAULT));
        mm.imagen.setIcon(iconomaleta);
-       mm.repaint();*/
-
+       mm.repaint();
+       
+       gmantenimiento.crearDot(mante.primero,colamante.primero, "mostrarMantenimiento");
+       gmantenimiento.generarImagen("mostrarMantenimiento.dot", "mostrarMantenimiento.png");
+       ImageIcon fotmante = new ImageIcon("mostrarMantenimiento.png");
+       Icon iconomante = new ImageIcon(fotmante.getImage().getScaledInstance(mt.imagen.getWidth(),mt.imagen.getHeight(), Image.SCALE_DEFAULT));
+       mt.imagen.setIcon(iconomante);
+       mt.repaint();
+       
+       gtodo.crearDot(cola.primero,listamaleta.primero,mante.primero,listadoble.primero, "mostrarTodo");
+       gtodo.generarImagen("mostrarTodo.dot", "mostrarTodo.png");
+       ImageIcon fottodo = new ImageIcon("mostrarTodo.png");
+       Icon iconotodo = new ImageIcon(fottodo.getImage().getScaledInstance(mto.imagen.getWidth(),mto.imagen.getHeight(), Image.SCALE_DEFAULT));
+       mto.imagen.setIcon(iconotodo);
+       mto.repaint();
     }//GEN-LAST:event_generarActionPerformed
 
     private void cambiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarActionPerformed
@@ -311,10 +338,9 @@ public class Inicio extends javax.swing.JFrame {
           int noavion=Integer.parseInt(avion.getText());//obtengo el numero de aviones que me piden
           contador++;//el turno 
           cola.eliminar5();//elimina 5 pasajeros
-          
            TamañoAvion();//genera datos del avion
            listadoble.disminuirTurno();//disminuye el numero de turno de desbordaje
-           
+           colamante.AgregaraLista(mante.primero);
         if(contador<=noavion){//que imprima solo el numero de aviones que me pidieron
            listadoble.insertarFinal(new NodoAvion(contador,tamañoAvion, noPasajeros, turnoDesabordaje, noMantenimiento));
         while(noPasajeros!=0){//imprime el numero de pasajeros generado anteriormente
@@ -331,27 +357,20 @@ public class Inicio extends javax.swing.JFrame {
                noPasajeros--;    
            }
         }
-
-        
-        //--------------------------COLA MANTENIMIENTO--------------------------
-        /*if(listadoble.noavion==0&&listadoble.tamaño==null&&listadoble.pasajero==0&&listadoble.desabordaje==0&&listadoble.mantenimiento==0){
-        System.out.println("La cola de mantenimiento esta vacia");
-        }else{
-        colamante.insertarFinal(new NodoAvion(listadoble.noavion,listadoble.tamaño,listadoble.pasajero,listadoble.desabordaje,listadoble.mantenimiento));
-        }*/
-     
            //--------------------mostrar en el JtextArea------------------------
            area.setForeground(Color.BLUE);
            area.append("++++++++++++++TURNO "+contador+"++++++++++++++\n");
            area.append(listadoble.recorrer());    //Aviones
-           area.append(cola.recorrer());          //Pasajeros
-           area.append(listamaleta.recorrer());   //Maletas
+          // area.append(cola.recorrer());          //Pasajeros
+          //area.append(listamaleta.recorrer());   //Maletas
           // area.append(colaescritorio.recorrer());
            area.append(colamante.recorrer());
            area.append(mante.recorrer());
            area.append("++++++++++TURNO "+contador+" FINALIZADO++++++++++\n");
            area.append("\n");
- 
+           
+           
+ mante.disminuirTurno();
       }catch(NumberFormatException n){
           JOptionPane.showMessageDialog(null,"Error "+n.getMessage());
           generar.setEnabled(true);
@@ -371,12 +390,26 @@ public class Inicio extends javax.swing.JFrame {
        mp.imagen.setIcon(iconopas);
        mp.repaint();
        
-       /*       gmaleta.crearDot(listamaleta.primero, "mostrarMaleta");
+       gmaleta.crearDot(listamaleta.primero, "mostrarMaleta");
        gmaleta.generarImagen("mostrarMaleta.dot", "mostrarMaleta.png");
        ImageIcon fotmaleta = new ImageIcon("mostrarMaleta.png");
        Icon iconomaleta = new ImageIcon(fotmaleta.getImage().getScaledInstance(mm.imagen.getWidth(),mm.imagen.getHeight(), Image.SCALE_DEFAULT));
        mm.imagen.setIcon(iconomaleta);
-       mm.repaint();*/
+       mm.repaint();
+       
+       gmantenimiento.crearDot(mante.primero, colamante.primero,"mostrarMantenimiento");
+       gmantenimiento.generarImagen("mostrarMantenimiento.dot", "mostrarMantenimiento.png");
+       ImageIcon fotmante = new ImageIcon("mostrarMantenimiento.png");
+       Icon iconomante = new ImageIcon(fotmante.getImage().getScaledInstance(mt.imagen.getWidth(),mt.imagen.getHeight(), Image.SCALE_DEFAULT));
+       mt.imagen.setIcon(iconomante);
+       mt.repaint();
+       
+       gtodo.crearDot(cola.primero,listamaleta.primero,mante.primero,listadoble.primero, "mostrarTodo");
+       gtodo.generarImagen("mostrarTodo.dot", "mostrarTodo.png");
+       ImageIcon fottodo = new ImageIcon("mostrarTodo.png");
+       Icon iconotodo = new ImageIcon(fottodo.getImage().getScaledInstance(mto.imagen.getWidth(),mto.imagen.getHeight(), Image.SCALE_DEFAULT));
+       mto.imagen.setIcon(iconotodo);
+       mto.repaint();
     }//GEN-LAST:event_cambiarActionPerformed
 
     private void llegadaavionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_llegadaavionesActionPerformed
@@ -421,8 +454,28 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_equipajeActionPerformed
 
     private void mantenimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mantenimientoActionPerformed
-        // TODO add your handling code here:
+       gmantenimiento.crearDot(mante.primero, colamante.primero,"mostrarMantenimiento");
+       gmantenimiento.generarImagen("mostrarMantenimiento.dot", "mostrarMantenimiento.png");
+       ImageIcon fotmante = new ImageIcon("mostrarMantenimiento.png");
+       Icon iconomante = new ImageIcon(fotmante.getImage().getScaledInstance(mt.imagen.getWidth(),mt.imagen.getHeight(), Image.SCALE_DEFAULT));
+       mt.imagen.setIcon(iconomante);
+       mt.repaint();
+       
+       mt.setVisible(true);
+       mt.setLocationRelativeTo(null);
     }//GEN-LAST:event_mantenimientoActionPerformed
+
+    private void llegadaaviones1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_llegadaaviones1ActionPerformed
+       gtodo.crearDot(cola.primero,listamaleta.primero,mante.primero,listadoble.primero, "mostrarTodo");
+       gtodo.generarImagen("mostrarTodo.dot", "mostrarTodo.png");
+       ImageIcon fottodo = new ImageIcon("mostrarTodo.png");
+       Icon iconotodo = new ImageIcon(fottodo.getImage().getScaledInstance(mto.imagen.getWidth(),mto.imagen.getHeight(), Image.SCALE_DEFAULT));
+       mto.imagen.setIcon(iconotodo);
+       mto.repaint();
+       
+       mto.setVisible(true);
+       mto.setLocationRelativeTo(null);
+    }//GEN-LAST:event_llegadaaviones1ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -471,6 +524,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton llegadaaviones;
+    private javax.swing.JButton llegadaaviones1;
     private javax.swing.JButton mantenimiento;
     // End of variables declaration//GEN-END:variables
 }

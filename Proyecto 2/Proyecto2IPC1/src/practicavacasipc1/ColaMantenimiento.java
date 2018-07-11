@@ -18,6 +18,28 @@ public class ColaMantenimiento {
     aux.siguiente=nuevo;
         }
     }
+
+    public void AgregaraLista(NodoListaMantenimiento ax){
+NodoAvion aux = primero;
+NodoListaMantenimiento uax= ax;
+while(aux!=null){
+while(uax!=null){
+if("LIBRE".equals(uax.getEstado())){
+uax.setEstado("OCUPADO");
+uax.setNoavion(aux.getNoavion());
+uax.setPasajeros(aux.getPasajeros());
+uax.setTamaño(aux.getTamaño());
+uax.setDesbordaje(aux.getDesbordaje());
+uax.setMatenimiento(aux.getMatenimiento());
+primero=primero.siguiente;
+return;
+}
+uax= uax.siguiente;
+}
+aux=aux.siguiente;
+}
+    }
+    
     
     public String recorrer(){
         System.out.println("imprimiento cola mantenimiento");

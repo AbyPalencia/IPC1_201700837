@@ -24,6 +24,25 @@ public class ListaMantenimiento {
                    aux.siguiente=nuevo;
          }
        }
+        public  void disminuirTurno(){
+            NodoListaMantenimiento aux = primero;
+            if("OCUPADO".equals(aux.getEstado())){
+                while(aux!=null){
+                aux.setMatenimiento(aux.getMatenimiento()-1);
+            if(aux.getMatenimiento()<=0){ 
+                aux.setEstado("LIBRE");
+                aux.setDesbordaje(0);
+                aux.setMatenimiento(0);
+                aux.setNoavion(0);
+                aux.setNoestacion(aux.getNoestacion());
+                aux.setPasajeros(0);
+                aux.setTamaño("--");
+            }
+           aux=aux.siguiente;
+            }
+            }  
+//subgrafos
+    }
     
     public String recorrer(){
         if(primero==null){

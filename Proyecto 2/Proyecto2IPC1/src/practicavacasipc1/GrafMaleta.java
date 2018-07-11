@@ -10,7 +10,9 @@ public class GrafMaleta {
         fw=new FileWriter(nombre+".dot"); 
         pw = new PrintWriter(fw);
         pw.println("digraph listadoble {");
-        pw.println(generarDot(primero));
+      //  pw.println("layout=\"circo\"; \n");
+        pw.println("node [shape = record] \n");
+        pw.println(generarDot(primero));// layout="circo";
         pw.println("}");
         pw.close();
        } catch (IOException ex) {
@@ -25,17 +27,15 @@ public class GrafMaleta {
     }
     public String generarDot(NodoMaleta primero){
         String cadena="";
-        if(primero==null){
-            return cadena;
+        NodoMaleta aux = primero;
+        do{
+       cadena+="nodo"+reemplazar(aux.hashCode())+"[label=\""+"Maleta No. "+aux.getNoMaleta()+"\"];\n";
+       if(aux.siguiente!=null){
+        cadena+="nodo"+reemplazar(aux.hashCode())+"->"+"nodo"+reemplazar(aux.siguiente.hashCode())+";\n";
+        cadena+="nodo"+reemplazar(aux.siguiente.hashCode())+"->"+"nodo"+reemplazar(aux.siguiente.anterior.hashCode())+";\n";
         }
-        cadena+="nodo"+reemplazar(primero.hashCode())+"[label=\""+"Maleta No. "+primero.getNoMaleta()+"\"];\n";
-        if(primero.siguiente!=null){
-            cadena+="nodo"+reemplazar(primero.hashCode())+"->"+"nodo"+reemplazar(primero.siguiente.hashCode())+";\n";
-            cadena+="nodo"+reemplazar(primero.siguiente.hashCode())+"->"+"nodo"+reemplazar(primero.siguiente.anterior.hashCode())+";\n";
-            cadena+="nodo"+reemplazar(primero.siguiente.anterior.anterior.hashCode())+"->"+"nodo"+reemplazar(primero.hashCode())+";\n";
-            cadena+="nodo"+reemplazar(primero.siguiente.anterior.siguiente.hashCode())+"->"+"nodo"+reemplazar(primero.siguiente.anterior.hashCode())+";\n";
-            cadena+=generarDot(primero.siguiente);
-        }
+       aux= aux.siguiente;
+        }while(aux!=primero);
         return cadena;
     }
     public void generarImagen(String direccionDot, String direccionImagen){

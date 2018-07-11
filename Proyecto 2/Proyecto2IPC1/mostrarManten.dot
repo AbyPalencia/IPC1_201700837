@@ -1,0 +1,11 @@
+digraph listamatenimiento {
+nodo362569104[label=" Avion No. 1
+ Tipo: Mediano Turnos de matenimiento: 3"];
+nodo362569104->nodo1237811527;
+nodo1237811527[label=" Avion No. 2
+ Tipo: Pequeño Turnos de matenimiento: 1"];
+nodo1237811527->nodo1447938936;
+nodo1447938936[label=" Avion No. 3
+ Tipo: Grande Turnos de matenimiento: 4"];
+
+}
