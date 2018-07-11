@@ -1,114 +1,22 @@
 digraph listadoble {
-nodo1929047804[label="Pasajero No. 6 : 
-Maletas 4 Documentos 6
- Turnos en registro 2"];
-nodo1929047804->nodo2118770362;
-nodo2118770362[label="Pasajero No. 7 : 
+nodo1839876793[label="Pasajero No. 1 : 
+Maletas 3 Documentos 9
+ Turnos en registro 3"];
+nodo1839876793->nodo1352836116;
+nodo1352836116[label="Pasajero No. 2 : 
 Maletas 3 Documentos 2
- Turnos en registro 1"];
-nodo2118770362->nodo1805672164;
-nodo1805672164[label="Pasajero No. 8 : 
-Maletas 3 Documentos 7
  Turnos en registro 2"];
-nodo1805672164->nodo361632971;
-nodo361632971[label="Pasajero No. 9 : 
-Maletas 1 Documentos 2
- Turnos en registro 1"];
-nodo361632971->nodo816223624;
-nodo816223624[label="Pasajero No. 10 : 
-Maletas 2 Documentos 10
- Turnos en registro 3"];
-nodo816223624->nodo2765096;
-nodo2765096[label="Pasajero No. 11 : 
-Maletas 2 Documentos 8
- Turnos en registro 1"];
-nodo2765096->nodo1771309239;
-nodo1771309239[label="Pasajero No. 12 : 
-Maletas 3 Documentos 3
- Turnos en registro 2"];
-nodo1771309239->nodo215572738;
-nodo215572738[label="Pasajero No. 13 : 
-Maletas 3 Documentos 8
- Turnos en registro 2"];
-nodo215572738->nodo139968452;
-nodo139968452[label="Pasajero No. 14 : 
-Maletas 1 Documentos 7
- Turnos en registro 2"];
-nodo139968452->nodo1495628951;
-nodo1495628951[label="Pasajero No. 15 : 
-Maletas 1 Documentos 2
- Turnos en registro 1"];
-nodo1495628951->nodo272438964;
-nodo272438964[label="Pasajero No. 16 : 
-Maletas 4 Documentos 9
- Turnos en registro 2"];
-nodo272438964->nodo1462478016;
-nodo1462478016[label="Pasajero No. 17 : 
-Maletas 1 Documentos 5
- Turnos en registro 2"];
-nodo1462478016->nodo1656199294;
-nodo1656199294[label="Pasajero No. 18 : 
-Maletas 3 Documentos 1
- Turnos en registro 3"];
-nodo1656199294->nodo268734843;
-nodo268734843[label="Pasajero No. 19 : 
-Maletas 3 Documentos 1
- Turnos en registro 3"];
-nodo268734843->nodo1760865657;
-nodo1760865657[label="Pasajero No. 20 : 
-Maletas 2 Documentos 6
- Turnos en registro 2"];
-nodo1760865657->nodo1660094723;
-nodo1660094723[label="Pasajero No. 21 : 
-Maletas 3 Documentos 5
- Turnos en registro 3"];
-nodo1660094723->nodo1012472139;
-nodo1012472139[label="Pasajero No. 22 : 
-Maletas 1 Documentos 1
- Turnos en registro 2"];
-nodo1012472139->nodo149080306;
-nodo149080306[label="Pasajero No. 23 : 
-Maletas 3 Documentos 4
- Turnos en registro 2"];
-nodo149080306->nodo2052190286;
-nodo2052190286[label="Pasajero No. 24 : 
-Maletas 4 Documentos 2
- Turnos en registro 3"];
-nodo2052190286->nodo1131238726;
-nodo1131238726[label="Pasajero No. 25 : 
-Maletas 2 Documentos 5
- Turnos en registro 3"];
-nodo1131238726->nodo747466158;
-nodo747466158[label="Pasajero No. 26 : 
-Maletas 3 Documentos 4
- Turnos en registro 3"];
-nodo747466158->nodo1131883832;
-nodo1131883832[label="Pasajero No. 27 : 
-Maletas 4 Documentos 8
- Turnos en registro 3"];
-nodo1131883832->nodo919692952;
-nodo919692952[label="Pasajero No. 28 : 
-Maletas 4 Documentos 8
- Turnos en registro 3"];
-nodo919692952->nodo524276321;
-nodo524276321[label="Pasajero No. 29 : 
-Maletas 2 Documentos 7
- Turnos en registro 2"];
-nodo524276321->nodo1477983285;
-nodo1477983285[label="Pasajero No. 30 : 
-Maletas 4 Documentos 9
- Turnos en registro 1"];
-nodo1477983285->nodo578602211;
-nodo578602211[label="Pasajero No. 31 : 
+nodo1352836116->nodo318484527;
+nodo318484527[label="Pasajero No. 3 : 
 Maletas 1 Documentos 3
  Turnos en registro 3"];
-nodo578602211->nodo530875282;
-nodo530875282[label="Pasajero No. 32 : 
-Maletas 2 Documentos 7
+nodo318484527->nodo1859729758;
+nodo1859729758[label="Pasajero No. 4 : 
+Maletas 4 Documentos 4
  Turnos en registro 2"];
-nodo530875282->nodo2120873693;
-nodo2120873693[label="Pasajero No. 33 : 
-Maletas 2 Documentos 4
+nodo1859729758->nodo1369004478;
+nodo1369004478[label="Pasajero No. 5 : 
+Maletas 2 Documentos 9
  Turnos en registro 3"];
 
 }

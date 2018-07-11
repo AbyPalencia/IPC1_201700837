@@ -26,6 +26,8 @@ public class ColaPasajero {
             if(size()<5){
         int contador=1;
             while(contador<=size()){
+               // new Inicio().pila.insertarInicio(new NodoDocumento(primero.getMaletas()));
+             //   new Inicio().colaescritorio.insertarFinal(primero);
                 primero=primero.sig; 
                 contador++;
             }

@@ -14,12 +14,12 @@ public class ListaEscritorio {
     public boolean estaVacia(){
         return null == primero;
     }
-    public void crearCola(String letra){
-        cola = new ColaEscritorio(letra);
-        for(int i=1;i<=7;i++){
-               cola.insertarFinal(new NodoPasajero(2,3,2,12));
-               }
+    /*    public void crearCola(String letra){
+    cola = new ColaEscritorio(letra);
+    for(int i=1;i<=7;i++){
+    cola.insertarFinal(new NodoPasajero(2,3,2,12));
     }
+    }*/
     
     public void insertarFinal(NodoEscritorio nuevo){
         if(primero==null){
@@ -55,7 +55,7 @@ public class ListaEscritorio {
             }
             System.out.println("");
         }
-        datos=datos+cola.recorrer();
+       // datos=datos+cola.recorrer();
         return datos;
     }
 }

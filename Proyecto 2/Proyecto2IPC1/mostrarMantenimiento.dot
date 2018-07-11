@@ -4,7 +4,23 @@ rankdir=LR;
 
 node [shape = box] 
 
-nodo1709438688[label="Estación No. 1 : 
+nodo1884525363[label="Estación No. 1 : 
+Estado: LIBRE Avion No. 0
+ Tipo:  Turnos de matenimiento: 0"];
+nodo1884525363->nodo1343897739;
+nodo1343897739[label="Estación No. 2 : 
+Estado: LIBRE Avion No. 0
+ Tipo:  Turnos de matenimiento: 0"];
+nodo1343897739->nodo942053737;
+nodo942053737[label="Estación No. 3 : 
+Estado: LIBRE Avion No. 0
+ Tipo:  Turnos de matenimiento: 0"];
+nodo942053737->nodo1498942888;
+nodo1498942888[label="Estación No. 4 : 
+Estado: LIBRE Avion No. 0
+ Tipo:  Turnos de matenimiento: 0"];
+nodo1498942888->nodo897505211;
+nodo897505211[label="Estación No. 5 : 
 Estado: LIBRE Avion No. 0
  Tipo:  Turnos de matenimiento: 0"];
 

@@ -25,11 +25,11 @@ public class ListaMaleta {
        }
 
    public void eliminar(int a){
-       int contador=1;
+      int contador=1;
        NodoMaleta aux= primero;
        NodoMaleta ant = null;
-       for(int i=contador; i<=a; i++){
-           ant= aux.anterior;
+       while(contador<=a){
+            ant= aux.anterior;
            ant.siguiente=aux.siguiente;
            aux=aux.siguiente;
            aux.anterior=ant;
@@ -37,6 +37,7 @@ public class ListaMaleta {
            ant=null;
            contador++;
        }
+
        
     }
    

@@ -1,0 +1,15 @@
+digraph listadoble {
+rankdir=LR; 
+
+node [shape = box];
+
+nodo581931590[label="Escritorio E : 
+Estado: libre Pasajero No. 0
+ Cantidad Documentos 0 No. turnos 0"];
+nodo581931590->nodo1638881959;
+nodo1638881959->nodo581931590;
+nodo1638881959[label="Escritorio C : 
+Estado: libre Pasajero No. 0
+ Cantidad Documentos 0 No. turnos 0"];
+
+}

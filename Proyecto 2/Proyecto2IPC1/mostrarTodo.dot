@@ -1,14 +1,106 @@
 digraph listamatenimiento {
 subgraph cluster_0 {
 label="LLegada de aviones";
-nodo1819590479[label="Avion No. 1 : 
-Mediano Pasajeros 23
- No. desabordaje 1 No. mantenimiento 2"];
-nodo1819590479->nodo2020798394;
-nodo2020798394->nodo1819590479;
-nodo2020798394[label="Avion No. 2 : 
-Pequeño Pasajeros 10
+nodo1412613434[label="Avion No. 1 : 
+Pequeño Pasajeros 5
  No. desabordaje 1 No. mantenimiento 1"];
+
+}
+
+subgraph cluster_1 {
+label="Pasajeros";
+nodo1839876793[label="Pasajero No. 1 : 
+Maletas 3 Documentos 9
+ Turnos en registro 3"];
+nodo1839876793->nodo1352836116;
+nodo1352836116[label="Pasajero No. 2 : 
+Maletas 3 Documentos 2
+ Turnos en registro 2"];
+nodo1352836116->nodo318484527;
+nodo318484527[label="Pasajero No. 3 : 
+Maletas 1 Documentos 3
+ Turnos en registro 3"];
+nodo318484527->nodo1859729758;
+nodo1859729758[label="Pasajero No. 4 : 
+Maletas 4 Documentos 4
+ Turnos en registro 2"];
+nodo1859729758->nodo1369004478;
+nodo1369004478[label="Pasajero No. 5 : 
+Maletas 2 Documentos 9
+ Turnos en registro 3"];
+
+}
+
+subgraph cluster_2 {
+label="Maletas";
+nodo1542157793[label="Maleta No. 1"];
+nodo1542157793->nodo2095035403;
+nodo2095035403->nodo1542157793;
+nodo2095035403[label="Maleta No. 2"];
+nodo2095035403->nodo1729123975;
+nodo1729123975->nodo2095035403;
+nodo1729123975[label="Maleta No. 3"];
+nodo1729123975->nodo83891653;
+nodo83891653->nodo1729123975;
+nodo83891653[label="Maleta No. 4"];
+nodo83891653->nodo96742649;
+nodo96742649->nodo83891653;
+nodo96742649[label="Maleta No. 5"];
+nodo96742649->nodo79343526;
+nodo79343526->nodo96742649;
+nodo79343526[label="Maleta No. 6"];
+nodo79343526->nodo1643869656;
+nodo1643869656->nodo79343526;
+nodo1643869656[label="Maleta No. 7"];
+nodo1643869656->nodo1683024415;
+nodo1683024415->nodo1643869656;
+nodo1683024415[label="Maleta No. 8"];
+nodo1683024415->nodo1079484808;
+nodo1079484808->nodo1683024415;
+nodo1079484808[label="Maleta No. 9"];
+nodo1079484808->nodo297918907;
+nodo297918907->nodo1079484808;
+nodo297918907[label="Maleta No. 10"];
+nodo297918907->nodo724440046;
+nodo724440046->nodo297918907;
+nodo724440046[label="Maleta No. 11"];
+nodo724440046->nodo1221395590;
+nodo1221395590->nodo724440046;
+nodo1221395590[label="Maleta No. 12"];
+nodo1221395590->nodo904636406;
+nodo904636406->nodo1221395590;
+nodo904636406[label="Maleta No. 13"];
+nodo904636406->nodo1542157793;
+nodo1542157793->nodo904636406;
+
+}
+
+subgraph cluster_3 {
+label="Estaciones de Mantenimiento";
+nodo1884525363[label="Estación No. 1 : 
+Estado: LIBRE Avion No. 0
+ Tipo:  Turnos de matenimiento: 0"];
+nodo1884525363->nodo1343897739;
+nodo1343897739[label="Estación No. 2 : 
+Estado: LIBRE Avion No. 0
+ Tipo:  Turnos de matenimiento: 0"];
+nodo1343897739->nodo942053737;
+nodo942053737[label="Estación No. 3 : 
+Estado: LIBRE Avion No. 0
+ Tipo:  Turnos de matenimiento: 0"];
+nodo942053737->nodo1498942888;
+nodo1498942888[label="Estación No. 4 : 
+Estado: LIBRE Avion No. 0
+ Tipo:  Turnos de matenimiento: 0"];
+nodo1498942888->nodo897505211;
+nodo897505211[label="Estación No. 5 : 
+Estado: LIBRE Avion No. 0
+ Tipo:  Turnos de matenimiento: 0"];
+
+}
+
+subgraph cluster_3 {
+label="Estaciones de Mantenimiento";
 
 }
 

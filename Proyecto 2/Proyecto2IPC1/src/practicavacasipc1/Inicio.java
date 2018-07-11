@@ -16,21 +16,25 @@ public class Inicio extends javax.swing.JFrame {
     public static ListaMantenimiento mante = new ListaMantenimiento();
     public ListaEscritorio listaescritorio = new ListaEscritorio();
     
+    public static PilaDocumentos pila = new PilaDocumentos();
+    
     public ColaPasajero cola= new ColaPasajero();
     public static ColaMantenimiento colamante = new ColaMantenimiento();
-   // public static ColaEscritorio colaescritorio;
+    public static ColaEscritorio colaescritorio= new ColaEscritorio();
     
     public GrafAviones g = new GrafAviones();
     public GrafPasajero gpasajero = new GrafPasajero();
     public GrafMaleta gmaleta = new GrafMaleta();
     public GrafMantenimiento gmantenimiento = new GrafMantenimiento();
     public GrafTodo gtodo = new GrafTodo();
+    public GrafEscritorios gescri = new GrafEscritorios();
     
     public MostrarAviones ma = new MostrarAviones();
     public MostrarPasajero mp = new MostrarPasajero();
     public MostrarMaletas mm = new MostrarMaletas();
     public MostrarMantenimiento mt = new  MostrarMantenimiento();
     public MostrarTodo mto = new MostrarTodo();
+    public MostrarEscritorio me = new MostrarEscritorio();
     
     public Inicio() {
         initComponents();
@@ -260,7 +264,7 @@ public class Inicio extends javax.swing.JFrame {
            while(noescritorios!=0){
                LetraEscritorio();
                listaescritorio.insertarFinal(new NodoEscritorio(letraescritorio,"libre"));
-               listaescritorio.crearCola(letraescritorio);
+               //listaescritorio.crearCola(letraescritorio);
                /* colaescritorio = new ColaEscritorio(letraescritorio);
                for(int i=1;i<=7;i++){
                colaescritorio.insertarFinal(new NodoPasajero(2,3,2,12));
@@ -281,10 +285,11 @@ public class Inicio extends javax.swing.JFrame {
            area.setForeground(Color.BLUE);
            area.append("++++++++++++++TURNO "+contador+"++++++++++++++\n");
            area.append(listadoble.recorrer());      //Aviones
-           //area.append(cola.recorrer());            //pasajeros
-           //area.append(listamaleta.recorrer());     //Maletas
-           //area.append(listaescritorio.recorrer()); //Lista escritorio
-         //  area.append(colaescritorio.recorrer());  //Cola escritorio
+           area.append(cola.recorrer());            //pasajeros
+           area.append(listamaleta.recorrer());     //Maletas
+           area.append(pila.recorrer());
+           area.append(listaescritorio.recorrer()); //Lista escritorio
+           area.append(colaescritorio.recorrer());  //Cola escritorio
            area.append(colamante.recorrer());
            area.append(mante.recorrer());
            
@@ -325,12 +330,19 @@ public class Inicio extends javax.swing.JFrame {
        mt.imagen.setIcon(iconomante);
        mt.repaint();
        
-       gtodo.crearDot(cola.primero,listamaleta.primero,mante.primero,listadoble.primero, "mostrarTodo");
+       gtodo.crearDot(colamante.primero,cola.primero,listamaleta.primero,mante.primero,listadoble.primero, "mostrarTodo");
        gtodo.generarImagen("mostrarTodo.dot", "mostrarTodo.png");
        ImageIcon fottodo = new ImageIcon("mostrarTodo.png");
        Icon iconotodo = new ImageIcon(fottodo.getImage().getScaledInstance(mto.imagen.getWidth(),mto.imagen.getHeight(), Image.SCALE_DEFAULT));
        mto.imagen.setIcon(iconotodo);
        mto.repaint();
+       
+       gescri.crearDot(listaescritorio.primero,"mostrarEscritorio");
+       gescri.generarImagen("mostrarEscritorio.dot", "mostrarEscritorio.png");
+       ImageIcon fotescri = new ImageIcon("mostrarEscritorio.png");
+       Icon iconoescri = new ImageIcon(fotescri.getImage().getScaledInstance(me.imagen.getWidth(),me.imagen.getHeight(), Image.SCALE_DEFAULT));
+       me.imagen.setIcon(iconoescri);
+       me.repaint();
     }//GEN-LAST:event_generarActionPerformed
 
     private void cambiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cambiarActionPerformed
@@ -361,9 +373,10 @@ public class Inicio extends javax.swing.JFrame {
            area.setForeground(Color.BLUE);
            area.append("++++++++++++++TURNO "+contador+"++++++++++++++\n");
            area.append(listadoble.recorrer());    //Aviones
-          // area.append(cola.recorrer());          //Pasajeros
-          //area.append(listamaleta.recorrer());   //Maletas
-          // area.append(colaescritorio.recorrer());
+           area.append(cola.recorrer());          //Pasajeros
+           area.append(listamaleta.recorrer());   //Maletas
+           area.append(pila.recorrer());
+           area.append(colaescritorio.recorrer());
            area.append(colamante.recorrer());
            area.append(mante.recorrer());
            area.append("++++++++++TURNO "+contador+" FINALIZADO++++++++++\n");
@@ -404,12 +417,19 @@ public class Inicio extends javax.swing.JFrame {
        mt.imagen.setIcon(iconomante);
        mt.repaint();
        
-       gtodo.crearDot(cola.primero,listamaleta.primero,mante.primero,listadoble.primero, "mostrarTodo");
+       gtodo.crearDot(colamante.primero,cola.primero,listamaleta.primero,mante.primero,listadoble.primero, "mostrarTodo");
        gtodo.generarImagen("mostrarTodo.dot", "mostrarTodo.png");
        ImageIcon fottodo = new ImageIcon("mostrarTodo.png");
        Icon iconotodo = new ImageIcon(fottodo.getImage().getScaledInstance(mto.imagen.getWidth(),mto.imagen.getHeight(), Image.SCALE_DEFAULT));
        mto.imagen.setIcon(iconotodo);
        mto.repaint();
+       
+       gescri.crearDot(listaescritorio.primero,"mostrarEscritorio");
+       gescri.generarImagen("mostrarEscritorio.dot", "mostrarEscritorio.png");
+       ImageIcon fotescri = new ImageIcon("mostrarEscritorio.png");
+       Icon iconoescri = new ImageIcon(fotescri.getImage().getScaledInstance(me.imagen.getWidth(),me.imagen.getHeight(), Image.SCALE_DEFAULT));
+       me.imagen.setIcon(iconoescri);
+       me.repaint();
     }//GEN-LAST:event_cambiarActionPerformed
 
     private void llegadaavionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_llegadaavionesActionPerformed
@@ -438,7 +458,15 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_desabordajeActionPerformed
 
     private void btnescritoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnescritoriosActionPerformed
-        // TODO add your handling code here:
+       gescri.crearDot(listaescritorio.primero,"mostrarEscritorio");
+       gescri.generarImagen("mostrarEscritorio.dot", "mostrarEscritorio.png");
+       ImageIcon fotescri = new ImageIcon("mostrarEscritorio.png");
+       Icon iconoescri = new ImageIcon(fotescri.getImage().getScaledInstance(me.imagen.getWidth(),me.imagen.getHeight(), Image.SCALE_DEFAULT));
+       me.imagen.setIcon(iconoescri);
+       me.repaint();
+       
+       me.setVisible(true);
+       me.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnescritoriosActionPerformed
 
     private void equipajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_equipajeActionPerformed
@@ -466,7 +494,7 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_mantenimientoActionPerformed
 
     private void llegadaaviones1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_llegadaaviones1ActionPerformed
-       gtodo.crearDot(cola.primero,listamaleta.primero,mante.primero,listadoble.primero, "mostrarTodo");
+       gtodo.crearDot(colamante.primero,cola.primero,listamaleta.primero,mante.primero,listadoble.primero, "mostrarTodo");
        gtodo.generarImagen("mostrarTodo.dot", "mostrarTodo.png");
        ImageIcon fottodo = new ImageIcon("mostrarTodo.png");
        Icon iconotodo = new ImageIcon(fottodo.getImage().getScaledInstance(mto.imagen.getWidth(),mto.imagen.getHeight(), Image.SCALE_DEFAULT));

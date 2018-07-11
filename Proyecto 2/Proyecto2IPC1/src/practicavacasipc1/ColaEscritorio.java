@@ -3,9 +3,9 @@ public class ColaEscritorio {
     public NodoPasajero primero;
     public static String datos,letra;
     public static int a, size;
-    public ColaEscritorio(String letra){
-        this.letra=letra;
-    }
+    /*    public ColaEscritorio(String letra){
+    this.letra=letra;
+    }*/
     
     public boolean estaVacia(){
         return null == primero;
@@ -34,7 +34,7 @@ public class ColaEscritorio {
         }else{
             NodoPasajero aux= primero;
             String sangria="     ";
-            datos="******COLA DEL ESCRITORIO "+letra+"******\n";
+            datos="******COLA DEL ESCRITORIO******\n";
             while(aux!=null){
                 datos = datos
                         +"PASAJERO "+aux.getNoPasajero()+"\n"
